@@ -7,7 +7,7 @@ export const url = (path = '') => `${import.meta.env.BASE_URL.replace(/\/$/, '')
 
 export const site = {
   name: 'Jude Myers',
-  brand: 'Jude Myers Design.',
+  brand: 'Jude Myers Design',
   title: 'Jude Myers | Product Design & Technology',
   description:
     'Product designer and BSc Product Design & Technology student at the University of Limerick.',

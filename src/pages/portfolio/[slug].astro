@@ -1,23 +1,28 @@
 ---
+import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import { projects, url } from '../../data/site';
+import Picture from '../../components/Picture.astro';
+import { url } from '../../data/site';
+import { getProjects, slugOf } from '../../lib/content';
 
-export function getStaticPaths() {
-  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.map((project) => ({ params: { slug: slugOf(project.id) }, props: { project } }));
 }
 const { project } = Astro.props;
+const { Content } = await render(project);
 ---
 
-<Layout title={`${project.title} | Jude Myers`}>
+<Layout title={`${project.data.title} | Jude Myers`}>
   <div class="wrap">
-    <h1 class="page-title">{project.title}</h1>
-    {project.image && <img src={`${project.image}?format=1500w`} alt={project.alt ?? ''} />}
-    <p>Full case study coming soon.</p>
+    <h1 class="page-title">{project.data.title}</h1>
+    {project.data.cover && <Picture src={project.data.cover} alt={project.data.coverAlt} width={1500} />}
+    <div class="prose"><Content /></div>
     <p><a class="btn" href={url('portfolio')}>← All Projects</a></p>
   </div>
 </Layout>
 
 <style>
   .page-title { font-size: clamp(2.2rem, 5vw, 4rem); }
-  img { width: 100%; max-width: 1000px; margin-bottom: 1.5rem; }
+  .wrap :global(img) { width: 100%; max-width: 1000px; margin-bottom: 1.5rem; }
 </style>

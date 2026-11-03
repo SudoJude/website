@@ -1,22 +1,50 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { photos, photoCategories } from '../data/site';
+import Picture from '../components/Picture.astro';
+import { photoCategories } from '../data/categories';
+import { getPhotos } from '../lib/content';
+
+const photos = await getPhotos();
 ---
 
 <Layout title="Photography | Jude Myers">
   <div class="wrap">
     <h1 class="page-title">Photography</h1>
-    <ul class="cats">{photoCategories.map((c) => <li>{c}</li>)}</ul>
+    <div class="cats" role="group" aria-label="Filter by category">
+      <button type="button" class="active" data-cat="">All</button>
+      {photoCategories.map((c) => <button type="button" data-cat={c}>{c}</button>)}
+    </div>
     <div class="gallery">
-      {photos.map((p) => <img src={`${p.src}?format=750w`} alt={p.alt} loading="lazy" />)}
+      {photos.map((p) => (
+        <div class="item" data-category={p.data.category}>
+          <Picture src={p.data.image} alt={p.data.alt} />
+        </div>
+      ))}
     </div>
   </div>
 </Layout>
 
 <style>
   .page-title { font-size: clamp(2.4rem, 6vw, 4.5rem); }
-  .cats { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0 0 2rem; }
-  .cats li { padding: 0.3rem 0.9rem; border: 1px solid var(--ink); border-radius: 999px; }
+  .cats { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 2rem; }
+  .cats button {
+    padding: 0.3rem 0.9rem; border: 1px solid var(--ink); border-radius: 999px;
+    background: none; color: inherit; font: inherit; cursor: pointer;
+  }
+  .cats button.active { background: var(--ink); color: var(--cream); }
   .gallery { columns: 3 280px; column-gap: 1rem; }
-  .gallery img { width: 100%; margin-bottom: 1rem; }
+  .item { break-inside: avoid; margin-bottom: 1rem; }
+  .item[hidden] { display: none; }
+  .item :global(img) { width: 100%; height: auto; }
 </style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.cats button');
+  const items = document.querySelectorAll<HTMLElement>('.item');
+  buttons.forEach((b) =>
+    b.addEventListener('click', () => {
+      buttons.forEach((x) => x.classList.toggle('active', x === b));
+      items.forEach((i) => (i.hidden = !!b.dataset.cat && i.dataset.category !== b.dataset.cat));
+    }),
+  );
+</script>

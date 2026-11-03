@@ -1,19 +1,24 @@
 ---
+import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import { posts, url } from '../../data/site';
+import Picture from '../../components/Picture.astro';
+import { url } from '../../data/site';
+import { getPosts, slugOf } from '../../lib/content';
 
-export function getStaticPaths() {
-  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: slugOf(post.id) }, props: { post } }));
 }
 const { post } = Astro.props;
+const { Content } = await render(post);
 ---
 
-<Layout title={`${post.title} | Jude Myers`}>
+<Layout title={`${post.data.title} | Jude Myers`}>
   <div class="wrap">
-    <h1 class="page-title">{post.title}</h1>
-    <p class="meta">Jude · {new Date(post.date).toLocaleDateString('en-GB')}</p>
-    <img src={`${post.image}?format=1500w`} alt="" />
-    <p class="body">{post.excerpt}</p>
+    <h1 class="page-title">{post.data.title}</h1>
+    <p class="meta">Jude · {post.data.date.toLocaleDateString('en-GB')}</p>
+    {post.data.cover && <Picture src={post.data.cover} alt={post.data.coverAlt} width={1500} />}
+    <div class="prose"><Content /></div>
     <p><a class="btn" href={url('blog')}>← All Posts</a></p>
   </div>
 </Layout>
@@ -21,6 +26,5 @@ const { post } = Astro.props;
 <style>
   .page-title { font-size: clamp(2.2rem, 5vw, 4rem); }
   .meta { opacity: 0.7; }
-  img { width: 100%; max-width: 900px; margin: 1rem 0; }
-  .body { max-width: 65ch; font-size: 1.1rem; }
+  .wrap :global(img) { width: 100%; max-width: 900px; margin: 1rem 0; }
 </style>

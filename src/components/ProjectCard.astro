@@ -1,11 +1,12 @@
 ---
+import Picture from './Picture.astro';
 import { url } from '../data/site';
-interface Props { slug: string; title: string; image?: string; alt?: string }
+interface Props { slug: string; title: string; image?: any; alt?: string }
 const { slug, title, image, alt = '' } = Astro.props;
 ---
 
 <article class="card">
-  {image ? <img src={`${image}?format=750w`} {alt} loading="lazy" /> : <div class="ph" />}
+  {image ? <Picture src={image} {alt} /> : <div class="ph" />}
   <h2>{title}</h2>
   <a class="btn" href={url(`portfolio/${slug}`)}>View Project</a>
 </article>
@@ -17,7 +18,7 @@ const { slug, title, image, alt = '' } = Astro.props;
     padding: 1rem;
     background: rgba(255, 255, 255, 0.35);
   }
-  img, .ph { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--ink); }
+  .card :global(img), .ph { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--ink); }
   h2 { font-size: 1.9rem; margin: 0; }
   .btn { align-self: flex-start; margin-top: auto; }
 </style>

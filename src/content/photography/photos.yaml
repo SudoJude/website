@@ -1,0 +1,72 @@
+# One entry per photo. Local files: image: ../../assets/photography/<file>.jpg
+# Categories are defined in src/data/categories.ts.
+hawaiian-shirt:
+  image: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/5e00c59d-e071-4995-aed5-376e85846bc0/DSC00926.jpeg"
+  alt: "Man in a blue bucket hat and Hawaiian shirt against a plain background"
+  category: "Street & People"
+  featured: true
+spirit-of-gaiety:
+  image: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/e92358dc-2808-44c2-895b-8e058fef4558/DSC04598.JPG"
+  alt: "Spirit of Gaiety in the V&A Museum, London"
+  category: "Objects & Details"
+  featured: true
+clock-tower:
+  image: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/e4bf937c-877a-4aab-a9c7-36022d6c4e97/DSC04695.JPG"
+  alt: "Clock tower with a spire and golden weather vane"
+  category: "Urban & Architecture"
+  featured: true
+new-york-street:
+  image: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/68b00934-f670-4116-976c-30b7eb822308/IMG_0139.jpg"
+  alt: "Black and white street in New York with American flags"
+  category: "Street & People"
+  featured: true
+rally-car:
+  image: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/81bcf799-79df-449e-8a9c-913ddbce35cc/DSC04891.JPG"
+  alt: "Yellow and black rally car on a dirt road"
+  category: "Automotive"
+  featured: true
+blue-door-boat:
+  image: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/eca80d2d-37ad-4d79-8e42-12dee95cb3cf/DSCF4086.JPG"
+  alt: "Small white building with a blue door and a boat on a stand"
+  category: "Landscape, Nature, & Travel"
+  featured: true
+brick-tower:
+  image: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/81f328c0-c7ed-4bc5-a213-27f1b86408fc/DSC04766.JPG"
+  alt: "Brick tower with arched windows and dragon sculptures"
+  category: "Urban & Architecture"
+  featured: true
+coastal-cliffs:
+  image: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/00fa88b9-3815-47d2-8722-5cfaf42f5abc/IMG_3947.jpg"
+  alt: "Coastal cliffs with a grassy foreground"
+  category: "Landscape, Nature, & Travel"
+  featured: true
+green-mountain:
+  image: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/09922294-8bd2-4e13-b7d5-77d597c32aed/DSC01323.jpg"
+  alt: "Green mountain with a trail to the peak"
+  category: "Landscape, Nature, & Travel"
+  featured: true
+kew-pagoda:
+  image: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/1e3cdd2f-ed66-40da-9328-660ea0574221/DSC04747.JPG"
+  alt: "Pagoda in Kew Gardens, London"
+  category: "Urban & Architecture"
+  featured: true
+porsche-930:
+  image: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/6f1de66d-8962-4f80-ba5c-a3f9b83530f7/DSC04723.JPG"
+  alt: "Porsche 930 in Kew, London"
+  category: "Automotive"
+eiffel-tower:
+  image: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/14fa13da-bc07-48a0-99a4-9d9806009e87/IMG_20260603_130651173%7E2.jpg"
+  alt: "The Eiffel Tower viewed from a park"
+  category: "Urban & Architecture"
+sailboat:
+  image: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/96528ba9-afc2-4d30-aa44-9c876c43b13c/DSCF4226.JPG"
+  alt: "Sailboat anchored in calm water"
+  category: "Landscape, Nature, & Travel"
+domed-tower:
+  image: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/12f363bf-f4cc-420f-9a5e-336cd25fb17e/DSC04534.JPG"
+  alt: "Black and white domed tower on a historic building"
+  category: "Urban & Architecture"
+old-church:
+  image: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/5ef254a4-45f2-4149-a629-4e57a21eb171/DSC01075%7E2.jpeg"
+  alt: "Black and white old church with a round tower"
+  category: "Urban & Architecture"

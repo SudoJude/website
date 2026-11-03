@@ -2,11 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import Carousel from '../components/Carousel.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import { hero, projects, posts, photos, url } from '../data/site';
+import Picture from '../components/Picture.astro';
+import { hero, url } from '../data/site';
+import { getProjects, getPosts, getPhotos, slugOf, formatDate } from '../lib/content';
 
-const featured = projects.filter((p) => p.featured);
-const fmt = (d: string) =>
-  new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const projects = (await getProjects()).filter((p) => p.data.featured);
+const posts = (await getPosts()).slice(0, 3);
+const photos = (await getPhotos()).filter((p) => p.data.featured);
 ---
 
 <Layout dark>
@@ -20,7 +22,9 @@ const fmt = (d: string) =>
   <section class="wrap block">
     <h2 class="big">Featured Projects</h2>
     <Carousel>
-      {featured.map((p) => <ProjectCard slug={p.slug} title={p.featured!} image={p.image} alt={p.alt} />)}
+      {projects.map((p) => (
+        <ProjectCard slug={slugOf(p.id)} title={p.data.shortTitle ?? p.data.title} image={p.data.cover} alt={p.data.coverAlt} />
+      ))}
     </Carousel>
     <p class="more"><a class="btn" href={url('portfolio')}>View All Projects</a></p>
   </section>
@@ -30,10 +34,10 @@ const fmt = (d: string) =>
       <h2 class="big">Recent Blogs &amp; Case Studies</h2>
       <div class="post-grid">
         {posts.map((p) => (
-          <a class="post" href={url(`blog/${p.slug}`)}>
-            <img src={`${p.image}?format=500w`} alt="" loading="lazy" />
-            <time datetime={p.date}>{fmt(p.date)}</time>
-            <h3>{p.title}</h3>
+          <a class="post" href={url(`blog/${slugOf(p.id)}`)}>
+            {p.data.cover && <Picture src={p.data.cover} alt={p.data.coverAlt} width={500} />}
+            <time datetime={p.data.date.toISOString()}>{formatDate(p.data.date)}</time>
+            <h3>{p.data.title}</h3>
             <span>Read more →</span>
           </a>
         ))}
@@ -45,7 +49,7 @@ const fmt = (d: string) =>
   <section class="block">
     <div class="wrap"><h2 class="big">Featured Photography</h2></div>
     <Carousel>
-      {photos.slice(0, 10).map((p) => <img class="photo" src={`${p.src}?format=750w`} alt={p.alt} loading="lazy" />)}
+      {photos.map((p) => <Picture class="photo" src={p.data.image} alt={p.data.alt} />)}
     </Carousel>
     <p class="more wrap"><a class="btn" href={url('photography')}>View All Photography</a></p>
   </section>
@@ -60,8 +64,8 @@ const fmt = (d: string) =>
   .blogs .block { padding: 4rem clamp(1rem, 3vw, 2.5rem); }
   .post-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
   .post { text-decoration: none; display: flex; flex-direction: column; gap: 0.5rem; }
-  .post img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+  .post :global(img) { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
   .post time { opacity: 0.7; }
   .post h3 { font-size: 1.6rem; margin: 0; }
-  .photo { height: 340px; width: auto; }
+  .carousel :global(.photo) { height: 340px; width: auto; }
 </style>
