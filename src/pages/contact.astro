@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { socials } from '../data/site';
+---
+
+<Layout title="Contact | Jude Myers">
+  <div class="wrap">
+    <h1 class="page-title">Contact Me</h1>
+    <p>Get in touch through any of these:</p>
+    <ul>
+      {socials.map((s) => <li><a href={s.href} target="_blank" rel="noopener">{s.label}</a></li>)}
+    </ul>
+  </div>
+</Layout>
+
+<style>
+  .page-title { font-size: clamp(2.4rem, 6vw, 4.5rem); }
+  ul { font-size: 1.2rem; }
+</style>

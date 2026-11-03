@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { projects, url } from '../../data/site';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+const { project } = Astro.props;
+---
+
+<Layout title={`${project.title} | Jude Myers`}>
+  <div class="wrap">
+    <h1 class="page-title">{project.title}</h1>
+    {project.image && <img src={`${project.image}?format=1500w`} alt={project.alt ?? ''} />}
+    <p>Full case study coming soon.</p>
+    <p><a class="btn" href={url('portfolio')}>← All Projects</a></p>
+  </div>
+</Layout>
+
+<style>
+  .page-title { font-size: clamp(2.2rem, 5vw, 4rem); }
+  img { width: 100%; max-width: 1000px; margin-bottom: 1.5rem; }
+</style>

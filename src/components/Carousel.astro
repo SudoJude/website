@@ -1,0 +1,45 @@
+---
+// Horizontal scroll-snap track with prev/next buttons.
+---
+
+<div class="carousel">
+  <div class="track" data-track><slot /></div>
+  <button class="nav prev" aria-label="Previous" data-dir="-1">←</button>
+  <button class="nav next" aria-label="Next" data-dir="1">→</button>
+</div>
+
+<style>
+  .carousel { position: relative; }
+  .track {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .track::-webkit-scrollbar { display: none; }
+  .track > :global(*) { scroll-snap-align: start; flex: 0 0 auto; }
+  .nav {
+    position: absolute;
+    top: 40%;
+    width: 2.6rem; height: 2.6rem;
+    border: 0; border-radius: 50%;
+    background: rgba(26, 23, 20, 0.75);
+    color: var(--cream);
+    font: 700 1.2rem var(--mono);
+    cursor: pointer;
+  }
+  .prev { left: 0.5rem; }
+  .next { right: 0.5rem; }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.carousel').forEach((c) => {
+    const track = c.querySelector<HTMLElement>('[data-track]')!;
+    c.querySelectorAll<HTMLButtonElement>('.nav').forEach((b) =>
+      b.addEventListener('click', () =>
+        track.scrollBy({ left: Number(b.dataset.dir) * track.clientWidth * 0.8, behavior: 'smooth' }),
+      ),
+    );
+  });
+</script>

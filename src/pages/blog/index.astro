@@ -1,0 +1,35 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { posts, url } from '../../data/site';
+const fmt = (d: string) => new Date(d).toLocaleDateString('en-GB');
+---
+
+<Layout title="Blog | Jude Myers">
+  <div class="wrap">
+    <h1 class="page-title">Blogs &amp; Case Studies</h1>
+    <div class="list">
+      {posts.map((p) => (
+        <article>
+          <a href={url(`blog/${p.slug}`)}><img src={`${p.image}?format=500w`} alt="" loading="lazy" /></a>
+          <div>
+            <p class="meta">Jude · {fmt(p.date)}</p>
+            <h2><a href={url(`blog/${p.slug}`)}>{p.title}</a></h2>
+            <p>{p.excerpt}</p>
+            <a href={url(`blog/${p.slug}`)}>Read More</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page-title { font-size: clamp(2.4rem, 6vw, 4.5rem); }
+  .list { display: grid; gap: 2.5rem; }
+  article { display: grid; grid-template-columns: minmax(200px, 1fr) 2fr; gap: 2rem; }
+  article img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+  h2 { font-size: 2rem; }
+  h2 a { text-decoration: none; }
+  .meta { opacity: 0.7; margin: 0 0 0.5rem; }
+  @media (max-width: 700px) { article { grid-template-columns: 1fr; } }
+</style>

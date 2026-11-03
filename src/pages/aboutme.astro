@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { about } from '../data/site';
+---
+
+<Layout title="About Me | Jude Myers">
+  <div class="wrap">
+    <h1 class="page-title">About Me</h1>
+    <h3>{about.headline}</h3>
+    <p class="lead">{about.intro}</p>
+
+    <h2>My Skillset</h2>
+    <div class="skills">
+      {about.skills.map((s) => (
+        <div>
+          <h4>{s.title}</h4>
+          <ul>{s.items.map((i) => <li>{i}</li>)}</ul>
+        </div>
+      ))}
+    </div>
+
+    <h2>Experience</h2>
+    {about.experience.map((e) => (
+      <div class="entry">
+        <h4>{e.role} | {e.org}</h4>
+        <p class="dates">{e.dates}</p>
+        {e.summary && <p>{e.summary}</p>}
+        <ul>{e.points.map((p) => <li>{p}</li>)}</ul>
+      </div>
+    ))}
+
+    <h2>Education</h2>
+    {about.education.map((e) => (
+      <div class="entry"><h4>{e.title} | {e.org}</h4><p class="dates">{e.dates}</p><p>{e.text}</p></div>
+    ))}
+
+    <h2>Certifications</h2>
+    {about.certifications.map((c) => (
+      <div class="entry"><h4>{c.title} | {c.org}</h4><p>{c.text}</p></div>
+    ))}
+
+    <h2>Honours &amp; Awards</h2>
+    {about.awards.map((a) => (
+      <div class="entry"><h4>{a.title}</h4><p class="dates">{a.dates}</p><p>{a.text}</p></div>
+    ))}
+  </div>
+</Layout>
+
+<style>
+  .page-title { font-size: clamp(2.4rem, 6vw, 4.5rem); }
+  .lead { max-width: 70ch; font-size: 1.15rem; }
+  h2 { margin-top: 3.5rem; }
+  .skills { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  h4 { font-size: 1.3rem; margin-bottom: 0.4rem; }
+  .entry { max-width: 75ch; margin-bottom: 2rem; }
+  .dates { opacity: 0.7; margin: 0 0 0.5rem; }
+  ul { padding-left: 1.2rem; }
+</style>

@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { photos, photoCategories } from '../data/site';
+---
+
+<Layout title="Photography | Jude Myers">
+  <div class="wrap">
+    <h1 class="page-title">Photography</h1>
+    <ul class="cats">{photoCategories.map((c) => <li>{c}</li>)}</ul>
+    <div class="gallery">
+      {photos.map((p) => <img src={`${p.src}?format=750w`} alt={p.alt} loading="lazy" />)}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page-title { font-size: clamp(2.4rem, 6vw, 4.5rem); }
+  .cats { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0 0 2rem; }
+  .cats li { padding: 0.3rem 0.9rem; border: 1px solid var(--ink); border-radius: 999px; }
+  .gallery { columns: 3 280px; column-gap: 1rem; }
+  .gallery img { width: 100%; margin-bottom: 1rem; }
+</style>
