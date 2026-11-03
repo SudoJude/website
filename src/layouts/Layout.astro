@@ -9,8 +9,11 @@ interface Props {
   title?: string;
   description?: string;
   dark?: boolean; // dark hero behind the header
+  image?: string; // absolute URL for social previews
+  type?: 'website' | 'article';
 }
-const { title = site.title, description = site.description, dark = false } = Astro.props;
+const { title = site.title, description = site.description, dark = false, image, type = 'website' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -20,15 +23,26 @@ const { title = site.title, description = site.description, dark = false } = Ast
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href={url('favicon.svg')} />
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {image && <meta property="og:image" content={image} />}
+    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
     <title>{title}</title>
   </head>
   <body class:list={{ 'has-dark-hero': dark }}>
     <header class="site-header">
       <a class="brand" href={url()}>{site.brand}</a>
-      <nav aria-label="Main">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+      <nav id="main-nav" aria-label="Main">
         {nav.map((n) => <a href={n.href ?? url(n.path)}>{n.label}</a>)}
+        <a class="nav-cta" href={url('contact')}>Get In Touch</a>
       </nav>
-      <a class="btn" href={url('contact')}>Get In Touch</a>
+      <a class="btn header-cta" href={url('contact')}>Get In Touch</a>
     </header>
 
     <main><slot /></main>
@@ -113,14 +127,30 @@ const { title = site.title, description = site.description, dark = false } = Ast
   .site-header nav { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 1.1rem; }
   .site-header nav a { text-decoration: none; }
   .site-header nav a:hover { text-decoration: underline; }
+  .menu-toggle, .nav-cta { display: none; }
   @media (max-width: 960px) {
-    .site-header { flex-wrap: wrap; gap: 0.75rem 1.25rem; }
-    .site-header .btn { display: none; }
+    .header-cta { display: none; }
+    .menu-toggle {
+      display: block; padding: 0.4rem 0.9rem;
+      background: none; color: inherit; border: 1px solid currentColor; border-radius: 6px;
+      font: 700 1rem var(--mono); cursor: pointer;
+    }
+    .site-header nav {
+      display: none; position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column; gap: 0; padding: 0.5rem clamp(1rem, 3vw, 2.5rem) 1rem;
+      background: var(--ink); color: var(--cream);
+    }
+    .site-header.open nav { display: flex; }
+    .site-header nav a { padding: 0.7rem 0; border-bottom: 1px solid rgba(245, 240, 235, 0.15); }
+    .nav-cta { display: block; }
   }
 
   .prose { max-width: 70ch; font-size: 1.1rem; }
   .prose h2, .prose h3 { margin-top: 2rem; }
-  .prose img { max-width: 100%; height: auto; }
+  .prose img { max-width: 100%; height: auto; margin: 1.25rem 0; }
+  .prose iframe { width: 100%; max-width: 720px; aspect-ratio: 16 / 9; height: auto; border: 0; margin: 1.25rem 0; }
+  .prose a { color: var(--blue); }
+  .prose blockquote { margin: 1.25rem 0; padding-left: 1rem; border-left: 3px solid var(--ink); }
   .page-title { padding: 9rem 0 2rem; }
   .site-footer { background: var(--ink); color: var(--cream); margin-top: 4rem; padding: 3rem 0; }
   .footer-inner {
@@ -131,3 +161,12 @@ const { title = site.title, description = site.description, dark = false } = Ast
   .site-footer nav { display: flex; flex-direction: column; gap: 0.4rem; }
   .socials { list-style: none; display: flex; gap: 1rem; padding: 0; margin: 1rem 0 0; }
 </style>
+
+<script>
+  const header = document.querySelector<HTMLElement>('.site-header')!;
+  const toggle = header.querySelector<HTMLButtonElement>('.menu-toggle')!;
+  toggle.addEventListener('click', () => {
+    const open = header.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+</script>

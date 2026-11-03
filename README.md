@@ -42,9 +42,8 @@ Local images are resized and converted to modern formats at build time. Existing
 - About page, nav and social links: `src/data/site.ts`.
 - Anything invalid in frontmatter fails the build with the file and field named, so mistakes can't reach the live site.
 
-## Deploy (Cloudflare Pages)
-Pushing to `main` triggers a Cloudflare build.
-- Framework preset: Astro. Build command `npm run build`, output directory `dist`.
-- Node version comes from `.node-version`.
-- Custom domain: add `judemyers.eu` under the project's Custom domains tab.
-- Limits: 25 MiB per file, 20,000 files per deploy. Keep very large originals out of the repo (e.g. Cloudflare R2 behind a custom domain).
+## Deploy (Cloudflare)
+Push to `main`; Cloudflare builds with `npm run build` and serves `dist/` as configured in `wrangler.jsonc`. Pull requests get a CI run (`npm run check` + build) from GitHub Actions.
+- `public/_headers` and `public/_redirects` control headers and redirects (add old-URL redirects there).
+- Sitemap and `robots.txt` are generated/served automatically.
+- Limits: 25 MiB per file, 20,000 files per deploy. Keep very large originals out of the repo (Cloudflare R2 behind a custom domain; use the remote-URL form of `cover:` / `image:`).

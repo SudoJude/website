@@ -1,0 +1,9 @@
+{
+  // Cloudflare Workers static-assets deploy. `name` must match the Worker in the dashboard.
+  "name": "website",
+  "compatibility_date": "2026-11-03",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}

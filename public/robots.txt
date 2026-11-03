@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://judemyers.eu/sitemap-index.xml

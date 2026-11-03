@@ -18,10 +18,18 @@ export async function getPhotos() {
   return all.sort((a, b) => (b.data.date?.valueOf() ?? 0) - (a.data.date?.valueOf() ?? 0));
 }
 
-export function excerptOf(post: CollectionEntry<'blog'>) {
+export function excerptOf(post: CollectionEntry<'blog'>, max = 240) {
   if (post.data.excerpt) return post.data.excerpt;
-  const first = (post.body ?? '').split(/\n\s*\n/).find((p) => p.trim() && !p.startsWith('#')) ?? '';
-  return first.replace(/[*_`>]/g, '').trim();
+  const first =
+    (post.body ?? '')
+      .split(/\n\s*\n/)
+      .find((p) => p.trim() && !/^(#|!\[|<)/.test(p.trim())) ?? '';
+  const text = first
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/[*_`>\\]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return text.length > max ? `${text.slice(0, max).replace(/\s+\S*$/, '')}…` : text;
 }
 
 export const formatDate = (d: Date) =>

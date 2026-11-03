@@ -3,7 +3,7 @@ import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Picture from '../../components/Picture.astro';
 import { url } from '../../data/site';
-import { getPosts, slugOf } from '../../lib/content';
+import { getPosts, slugOf, excerptOf } from '../../lib/content';
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -13,7 +13,12 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<Layout title={`${post.data.title} | Jude Myers`}>
+<Layout
+  title={`${post.data.title} | Jude Myers`}
+  description={excerptOf(post, 160)}
+  type="article"
+  image={typeof post.data.cover === 'string' ? post.data.cover : post.data.cover?.src}
+>
   <div class="wrap">
     <h1 class="page-title">{post.data.title}</h1>
     <p class="meta">Jude · {post.data.date.toLocaleDateString('en-GB')}</p>

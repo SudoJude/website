@@ -1,5 +1,6 @@
 ---
 title: "test"
+draft: true
 date: 2026-07-26
 cover: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/325d401c-917b-442c-b6b0-4b7878de9c45/nothing-tech-9.jpg"
 ---
