@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config';
 
-// Project site: https://sudojude.github.io/website/
+// Hosted on Cloudflare Pages at the root of judemyers.eu, so no `base`.
 export default defineConfig({
-  site: 'https://sudojude.github.io',
-  base: '/website',
+  site: 'https://judemyers.eu',
 });

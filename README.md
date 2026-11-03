@@ -42,5 +42,9 @@ Local images are resized and converted to modern formats at build time. Existing
 - About page, nav and social links: `src/data/site.ts`.
 - Anything invalid in frontmatter fails the build with the file and field named, so mistakes can't reach the live site.
 
-## Deploy
-Push to `main`; GitHub Actions builds and publishes. Pages source must be set to GitHub Actions.
+## Deploy (Cloudflare Pages)
+Pushing to `main` triggers a Cloudflare build.
+- Framework preset: Astro. Build command `npm run build`, output directory `dist`.
+- Node version comes from `.node-version`.
+- Custom domain: add `judemyers.eu` under the project's Custom domains tab.
+- Limits: 25 MiB per file, 20,000 files per deploy. Keep very large originals out of the repo (e.g. Cloudflare R2 behind a custom domain).
