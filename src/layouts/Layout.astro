@@ -1,12 +1,16 @@
 ---
-import { profile } from '../data/site';
+import '@fontsource/ibm-plex-sans/400.css';
+import '@fontsource/ibm-plex-sans/700.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/700.css';
+import { site, nav, socials, url } from '../data/site';
 
 interface Props {
   title?: string;
   description?: string;
+  dark?: boolean; // dark hero behind the header
 }
-const { title = `${profile.name} · ${profile.role}`, description = profile.tagline } = Astro.props;
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const { title = site.title, description = site.description, dark = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -15,73 +19,112 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <link rel="icon" type="image/svg+xml" href={url('favicon.svg')} />
     <title>{title}</title>
   </head>
-  <body>
+  <body class:list={{ 'has-dark-hero': dark }}>
     <header class="site-header">
-      <a class="brand" href={`${base}/`}>{profile.name}</a>
-      <nav>
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+      <a class="brand" href={url()}>{site.brand}</a>
+      <nav aria-label="Main">
+        {nav.map((n) => <a href={n.href ?? url(n.path)}>{n.label}</a>)}
       </nav>
+      <a class="btn" href={url('contact')}>Get In Touch</a>
     </header>
+
     <main><slot /></main>
-    <footer>© {new Date().getFullYear()} {profile.name}</footer>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>
+          <p class="footer-title">Jude Myers Design.</p>
+          <p>Have a project in mind? <a href={url('contact')}>Get in touch here</a>.</p>
+          <ul class="socials">
+            {socials.map((s) => <li><a href={s.href} target="_blank" rel="noopener">{s.label}</a></li>)}
+          </ul>
+        </div>
+        <nav aria-label="Footer">
+          {nav.filter((n) => n.path).map((n) => <a href={url(n.path)}>{n.label}</a>)}
+        </nav>
+      </div>
+    </footer>
   </body>
 </html>
 
 <style is:global>
   :root {
-    --bg: #fafafa;
-    --fg: #16161d;
-    --muted: #5c5c6b;
-    --card: #fff;
-    --border: #e4e4ec;
-    --accent: #6d5efc;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0f0f14;
-      --fg: #ececf3;
-      --muted: #9a9aad;
-      --card: #17171f;
-      --border: #272733;
-      --accent: #9a8fff;
-    }
+    --ink: #1a1714;
+    --cream: #f5f0eb;
+    --page: #d3cecA;
+    --blue: #2851cc;
+    --sans: 'IBM Plex Sans', system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    background: var(--bg);
-    color: var(--fg);
-    font: 16px/1.65 system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background-color: var(--page);
+    color: var(--ink);
+    font: 14px/1.6 var(--mono);
   }
-  a { color: var(--accent); }
+  h1, h2, h3, h4 { font-family: var(--sans); font-weight: 700; margin: 0 0 1rem; line-height: 1.05; }
+  h1 { font-size: clamp(2.6rem, 10vw, 9.3rem); letter-spacing: -0.02em; }
+  h2 { font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -0.02em; }
+  h3 { font-size: 1.9rem; letter-spacing: -0.02em; }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+
+  .dots {
+    background-color: var(--cream);
+    background-image: radial-gradient(rgba(26, 23, 20, 0.22) 1px, transparent 1.5px);
+    background-size: 28px 28px;
+  }
+  .dots-dark {
+    background-color: var(--ink);
+    background-image: radial-gradient(rgba(245, 240, 235, 0.16) 1px, transparent 1.5px);
+    background-size: 28px 28px;
+    color: var(--cream);
+  }
+  .wrap { max-width: 1400px; margin: 0 auto; padding: 0 clamp(1rem, 3vw, 2.5rem); }
+  .btn {
+    display: inline-block;
+    padding: 0.8rem 1.6rem;
+    background: var(--blue);
+    color: var(--cream);
+    font: 700 1.1rem var(--mono);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.15s;
+  }
+  .btn:hover { background: #1d3d9e; }
+
   .site-header {
+    position: absolute;
+    inset: 0 0 auto 0;
+    z-index: 10;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 1.25rem 1.5rem;
+    gap: 2rem;
+    padding: 1rem clamp(1rem, 3vw, 2.5rem);
+    color: var(--ink);
   }
-  .site-header nav { display: flex; gap: 1.25rem; }
-  .site-header a { text-decoration: none; color: var(--muted); }
-  .site-header a:hover, .site-header .brand { color: var(--fg); }
-  .brand { font-weight: 700; }
-  main { max-width: 880px; margin: 0 auto; padding: 0 1.5rem; }
-  section { padding: 3rem 0; }
-  h1 { font-size: clamp(2.2rem, 6vw, 3.5rem); line-height: 1.1; margin: 0 0 1rem; }
-  h2 { font-size: 1.5rem; margin: 0 0 1.5rem; }
-  footer {
-    max-width: 880px;
-    margin: 2rem auto 0;
-    padding: 2rem 1.5rem;
-    color: var(--muted);
-    border-top: 1px solid var(--border);
-    font-size: 0.9rem;
+  .has-dark-hero .site-header { color: var(--cream); }
+  .site-header .brand { font: 700 1.8rem var(--sans); letter-spacing: -0.02em; text-decoration: none; margin-right: auto; }
+  .site-header nav { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 1.1rem; }
+  .site-header nav a { text-decoration: none; }
+  .site-header nav a:hover { text-decoration: underline; }
+  @media (max-width: 960px) {
+    .site-header { flex-wrap: wrap; gap: 0.75rem 1.25rem; }
+    .site-header .btn { display: none; }
   }
+
+  .page-title { padding: 9rem 0 2rem; }
+  .site-footer { background: var(--ink); color: var(--cream); margin-top: 4rem; padding: 3rem 0; }
+  .footer-inner {
+    max-width: 1400px; margin: 0 auto; padding: 0 clamp(1rem, 3vw, 2.5rem);
+    display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+  }
+  .footer-title { font: 700 1.8rem var(--sans); margin: 0 0 0.5rem; }
+  .site-footer nav { display: flex; flex-direction: column; gap: 0.4rem; }
+  .socials { list-style: none; display: flex; gap: 1rem; padding: 0; margin: 1rem 0 0; }
 </style>
