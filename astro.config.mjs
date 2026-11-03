@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 
-// Served from the custom domain judemyers.eu (see public/CNAME), so no `base`.
+// Project site: https://sudojude.github.io/website/
 export default defineConfig({
-  site: 'https://judemyers.eu',
+  site: 'https://sudojude.github.io',
+  base: '/website',
 });
