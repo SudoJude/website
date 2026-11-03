@@ -67,5 +67,5 @@ const photos = (await getPhotos()).filter((p) => p.data.featured);
   .post :global(img) { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
   .post time { opacity: 0.7; }
   .post h3 { font-size: 1.6rem; margin: 0; }
-  .carousel :global(.photo) { height: 340px; width: auto; }
+  .block :global(.photo) { height: 340px; width: auto; max-width: none; aspect-ratio: auto 3 / 2; }
 </style>
