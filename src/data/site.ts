@@ -30,8 +30,8 @@ export const socials = [
 ];
 
 export const hero = {
-  heading: 'Hello!, I’m Jude.',
-  text: 'I\'m a Product Designer, currently completing my BSc in Product Design & Technology at the University of Limerick with a strong interest in innovative design, engineering, and emerging technologies. Enthusiastic, adaptable, and driven, I’m eager to contribute to projects that combine technical precision with thoughtful design.',
+  heading: '🚧 site is currently under construction 🚧',
+  text: 'I am currently migrating my website from Squarespace to a custom Astro site hosted on Cloudfare Pages. This migration will take me a while and some sections of the site may be broken/missing',
 };
 
 export interface Project {
