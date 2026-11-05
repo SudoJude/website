@@ -30,7 +30,7 @@ export const socials = [
 ];
 
 export const hero = {
-  heading: '🚧 site is currently under construction 🚧',
+  heading: '🚧 Site is currently under construction 🚧',
   text: 'I am currently migrating my website from Squarespace to a custom Astro site hosted on Cloudfare Pages. This migration will take me a while and some sections of the site may be broken/missing',
 };
 
