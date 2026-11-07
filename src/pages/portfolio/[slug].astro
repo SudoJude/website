@@ -1,6 +1,7 @@
 ---
 import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import '../../components/carousel.css';
 import { url } from '../../data/site';
 import { getProjects, slugOf } from '../../lib/content';
 
@@ -65,41 +66,10 @@ const { heading, title, tagline, details } = project.data;
   .content :global(.btn) { color: var(--cream); text-decoration: none; }
   .content :global(p > img) { max-width: min(100%, 1000px); height: auto; margin: 1.5rem auto; }
 
-  /* Carousels: full width, centred slide, neighbours peeking */
-  .content :global(.reel) { position: relative; margin: 2rem -4vw; width: auto; }
-  .content :global(.reel-track) {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    padding: 0 calc(50% - 22vw);
-  }
-  .content :global(.reel-track::-webkit-scrollbar) { display: none; }
-  .content :global(.reel-track img) {
-    flex: none;
-    height: clamp(220px, 31vw, 450px);
-    width: auto;
-    max-width: none;
-    margin: 0;
-    scroll-snap-align: center;
-  }
-  .content :global(.reel-nav) {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    width: 2.8rem; height: 2.8rem; border: 0; border-radius: 50%;
-    background: rgba(26, 23, 20, 0.75); color: var(--cream);
-    font: 700 1.3rem var(--mono); cursor: pointer;
-  }
-  .content :global(.reel-nav.prev) { left: 1rem; }
-  .content :global(.reel-nav.next) { right: 1rem; }
+  /* Galleries are carousels (markup from the rehype plugin); here they just go full width */
+  .content :global(.project-gallery) { margin: 2rem -4vw; }
 </style>
 
 <script>
-  document.querySelectorAll<HTMLElement>('[data-reel]').forEach((reel) => {
-    const track = reel.querySelector<HTMLElement>('.reel-track')!;
-    reel.querySelectorAll<HTMLButtonElement>('.reel-nav').forEach((b) =>
-      b.addEventListener('click', () =>
-        track.scrollBy({ left: Number(b.dataset.dir) * track.clientWidth * 0.5, behavior: 'smooth' }),
-      ),
-    );
-  });
+  import '../../components/carousel.ts';
 </script>

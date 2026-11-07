@@ -10,10 +10,11 @@ const soleChild = (node, tag) => {
   return kids.length === 1 && kids[0].type === 'element' && kids[0].tagName === tag ? kids[0] : null;
 };
 
+// Same markup as src/components/Carousel.astro (styles/behaviour: carousel.css / carousel.ts).
 const button = (dir, label, text) => ({
   type: 'element',
   tagName: 'button',
-  properties: { type: 'button', className: ['reel-nav', dir], ariaLabel: label, 'data-dir': dir === 'prev' ? '-1' : '1' },
+  properties: { type: 'button', className: ['carousel-nav', dir], ariaLabel: label, 'data-dir': dir === 'prev' ? '-1' : '1' },
   children: [{ type: 'text', value: text }],
 });
 
@@ -27,9 +28,18 @@ export default function rehypeProject() {
         out.push({
           type: 'element',
           tagName: 'div',
-          properties: { className: ['reel'], 'data-reel': '' },
+          properties: {
+            className: ['carousel', 'project-gallery'],
+            'data-carousel': '',
+            'data-loop': '',
+            'data-align': 'center',
+            role: 'group',
+            ariaRoleDescription: 'carousel',
+            ariaLabel: 'Image gallery',
+            style: '--carousel-gap:0;--carousel-height:clamp(220px,31vw,450px);--carousel-nav-top:50%',
+          },
           children: [
-            { type: 'element', tagName: 'div', properties: { className: ['reel-track'] }, children: run },
+            { type: 'element', tagName: 'div', properties: { className: ['carousel-track'] }, children: run },
             button('prev', 'Previous image', '←'),
             button('next', 'Next image', '→'),
           ],

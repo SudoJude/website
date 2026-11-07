@@ -1,45 +1,42 @@
 ---
-// Horizontal scroll-snap track with prev/next buttons.
+// Reusable horizontal carousel with prev/next buttons. Children are the slides.
+//
+//   <Carousel>…slides…</Carousel>                       wraps around, centred slide, neighbours peek
+//   <Carousel loop={false}>…</Carousel>                 plain scroll-snap track, no wrapping
+//   <Carousel height="clamp(220px, 31vw, 450px)" gap="0">  <img …/> <img …/> </Carousel>
+//
+// Props: loop (default true), align ('center' | 'start', defaults to center when looping),
+// gap (CSS length between slides), height (fixed height for <img> slides), class, label.
+// Markdown galleries in project pages produce the same markup (src/lib/rehype-project.mjs).
+import './carousel.css';
+
+interface Props {
+  loop?: boolean;
+  align?: 'center' | 'start';
+  gap?: string;
+  height?: string;
+  class?: string;
+  label?: string;
+}
+const { loop = true, align = loop ? 'center' : 'start', gap, height, class: className, label = 'Image carousel' } = Astro.props;
+const style = [gap && `--carousel-gap:${gap}`, height && `--carousel-height:${height}`].filter(Boolean).join(';');
 ---
 
-<div class="carousel">
-  <div class="track" data-track><slot /></div>
-  <button class="nav prev" aria-label="Previous" data-dir="-1">←</button>
-  <button class="nav next" aria-label="Next" data-dir="1">→</button>
+<div
+  class:list={['carousel', className]}
+  data-carousel
+  data-align={align}
+  data-loop={loop ? '' : undefined}
+  role="group"
+  aria-roledescription="carousel"
+  aria-label={label}
+  style={style || undefined}
+>
+  <div class="carousel-track"><slot /></div>
+  <button class="carousel-nav prev" type="button" aria-label="Previous" data-dir="-1">←</button>
+  <button class="carousel-nav next" type="button" aria-label="Next" data-dir="1">→</button>
 </div>
 
-<style>
-  .carousel { position: relative; }
-  .track {
-    display: flex;
-    gap: 1.5rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-  }
-  .track::-webkit-scrollbar { display: none; }
-  .track > :global(*) { scroll-snap-align: start; flex: 0 0 auto; }
-  .nav {
-    position: absolute;
-    top: 40%;
-    width: 2.6rem; height: 2.6rem;
-    border: 0; border-radius: 50%;
-    background: rgba(26, 23, 20, 0.75);
-    color: var(--cream);
-    font: 700 1.2rem var(--mono);
-    cursor: pointer;
-  }
-  .prev { left: 0.5rem; }
-  .next { right: 0.5rem; }
-</style>
-
 <script>
-  document.querySelectorAll<HTMLElement>('.carousel').forEach((c) => {
-    const track = c.querySelector<HTMLElement>('[data-track]')!;
-    c.querySelectorAll<HTMLButtonElement>('.nav').forEach((b) =>
-      b.addEventListener('click', () =>
-        track.scrollBy({ left: Number(b.dataset.dir) * track.clientWidth * 0.8, behavior: 'smooth' }),
-      ),
-    );
-  });
+  import './carousel.ts';
 </script>

@@ -21,7 +21,7 @@ const photos = (await getPhotos()).filter((p) => p.data.featured);
 
   <section class="wrap block">
     <h2 class="big">Featured Projects</h2>
-    <Carousel>
+    <Carousel loop={false} label="Featured projects">
       {projects.map((p) => (
         <ProjectCard slug={slugOf(p.id)} title={p.data.shortTitle ?? p.data.title} image={p.data.cover} alt={p.data.coverAlt} />
       ))}
@@ -48,7 +48,7 @@ const photos = (await getPhotos()).filter((p) => p.data.featured);
 
   <section class="block">
     <div class="wrap"><h2 class="big">Featured Photography</h2></div>
-    <Carousel>
+    <Carousel loop={false} label="Featured photography">
       {photos.map((p) => <Picture class="photo" src={p.data.image} alt={p.data.alt} />)}
     </Carousel>
     <p class="more wrap"><a class="btn" href={url('photography')}>View All Photography</a></p>

@@ -1,0 +1,34 @@
+/* Carousel styles. Global (not scoped) so the same markup works from
+   Carousel.astro and from the Markdown rehype plugin (src/lib/rehype-project.mjs).
+   Tunable per instance via CSS variables: --carousel-gap, --carousel-height, --carousel-nav-top. */
+.carousel { position: relative; }
+.carousel.js-loop:not(.is-ready) { visibility: hidden; } /* avoid a jump while clones are built */
+
+.carousel-track {
+  position: relative; /* slides measure offsetLeft against the track */
+  display: flex;
+  gap: var(--carousel-gap, 1.5rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-track > * { flex: 0 0 auto; scroll-snap-align: start; }
+.carousel[data-align='center'] .carousel-track > * { scroll-snap-align: center; }
+/* Image slides: fixed height, natural width (only when --carousel-height is set) */
+.carousel-track > img { height: var(--carousel-height, auto); width: auto; max-width: none; margin: 0; }
+
+.carousel-nav {
+  position: absolute;
+  top: var(--carousel-nav-top, 40%);
+  transform: translateY(-50%);
+  width: 2.8rem; height: 2.8rem;
+  border: 0; border-radius: 50%;
+  background: rgba(26, 23, 20, 0.75);
+  color: var(--cream);
+  font: 700 1.3rem var(--mono);
+  cursor: pointer;
+}
+.carousel-nav.prev { left: 1rem; }
+.carousel-nav.next { right: 1rem; }
