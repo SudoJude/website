@@ -11,6 +11,9 @@ const projects = defineCollection({
     z.object({
       title: z.string(),
       shortTitle: z.string().optional(), // title used on home-page cards
+      heading: z.string().optional(), // page h1 when it differs from `title`
+      tagline: z.string().optional(), // line under the heading in the dark hero
+      details: z.array(z.string()).default([]), // "Role: …", "Duration: …" etc. for the hero banner
       featured: z.boolean().default(false), // show on the home page
       order: z.number().default(100), // lower = earlier
       cover: picture(image).optional(),

@@ -1,7 +1,6 @@
 ---
 import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import Picture from '../../components/Picture.astro';
 import { url } from '../../data/site';
 import { getProjects, slugOf } from '../../lib/content';
 
@@ -11,18 +10,96 @@ export async function getStaticPaths() {
 }
 const { project } = Astro.props;
 const { Content } = await render(project);
+const { heading, title, tagline, details } = project.data;
 ---
 
-<Layout title={`${project.data.title} | Jude Myers`}>
-  <div class="wrap">
-    <h1 class="page-title">{project.data.title}</h1>
-    {project.data.cover && <Picture src={project.data.cover} alt={project.data.coverAlt} width={1500} />}
-    <div class="prose"><Content /></div>
-    <p><a class="btn" href={url('portfolio')}>← All Projects</a></p>
+<Layout title={`${title} | Jude Myers`} dark>
+  <section class="hero dots-dark">
+    <div class="inner">
+      <h1>{heading ?? title}</h1>
+      {tagline && <h4>{tagline}</h4>}
+    </div>
+    {
+      details.length > 0 && (
+        <div class="marquee" aria-label={details.join(', ')}>
+          <div class="marquee-track" aria-hidden="true">
+            {[0, 1].map(() => <span>{details.map((d) => <span>{d}</span>)}</span>)}
+          </div>
+        </div>
+      )
+    }
+  </section>
+
+  <div class="body dots">
+    <div class="content"><Content /></div>
+    <p class="back"><a class="btn" href={url('portfolio')}>← All Projects</a></p>
   </div>
 </Layout>
 
 <style>
-  .page-title { font-size: clamp(2.2rem, 5vw, 4rem); }
-  .wrap :global(img) { width: 100%; max-width: 1000px; margin-bottom: 1.5rem; }
+  .hero { padding: 9rem 0 0; overflow: hidden; }
+  .inner { padding: 0 4%; }
+  .hero h1 { font-size: clamp(2.4rem, 5vw, 4.5rem); margin-bottom: 0.6rem; }
+  .hero h4 { font-size: clamp(1.2rem, 2.1vw, 1.9rem); max-width: 60rem; margin-bottom: 0; }
+  .marquee { margin-top: 1.5rem; padding: 1.2rem 0 1.6rem; overflow: hidden; white-space: nowrap; }
+  .marquee-track { display: inline-flex; animation: scroll 40s linear infinite; font-size: clamp(1rem, 1.7vw, 1.6rem); }
+  .marquee-track > span { display: inline-flex; flex: none; }
+  .marquee-track > span > span { padding: 0 1.6rem; }
+  .marquee-track > span > span::after { content: '|'; margin-left: 3.2rem; opacity: 0.6; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
+
+  .body { padding: 2rem 0 4rem; }
+  .content, .back { padding: 0 4%; }
+  .back { margin-top: 3rem; }
+
+  /* Markdown body (elements are generated, so :global) */
+  .content :global(h2) {
+    font-size: clamp(2rem, 3.6vw, 3.2rem);
+    margin: 0 0 1rem;
+    padding-top: 2.5rem;
+  }
+  .content :global(h2:not(:first-child)) { margin-top: 3rem; border-top: 1px solid var(--ink); padding-top: 5rem; }
+  .content :global(p) { font-size: clamp(1rem, 1.4vw, 1.25rem); line-height: 1.5; margin: 0 0 1.2rem; }
+  .content :global(.btn-row) { margin: 2rem 0; }
+  .content :global(.btn) { color: var(--cream); text-decoration: none; }
+  .content :global(p > img) { max-width: min(100%, 1000px); height: auto; margin: 1.5rem auto; }
+
+  /* Carousels: full width, centred slide, neighbours peeking */
+  .content :global(.reel) { position: relative; margin: 2rem -4vw; width: auto; }
+  .content :global(.reel-track) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding: 0 calc(50% - 22vw);
+  }
+  .content :global(.reel-track::-webkit-scrollbar) { display: none; }
+  .content :global(.reel-track img) {
+    flex: none;
+    height: clamp(220px, 31vw, 450px);
+    width: auto;
+    max-width: none;
+    margin: 0;
+    scroll-snap-align: center;
+  }
+  .content :global(.reel-nav) {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 2.8rem; height: 2.8rem; border: 0; border-radius: 50%;
+    background: rgba(26, 23, 20, 0.75); color: var(--cream);
+    font: 700 1.3rem var(--mono); cursor: pointer;
+  }
+  .content :global(.reel-nav.prev) { left: 1rem; }
+  .content :global(.reel-nav.next) { right: 1rem; }
 </style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-reel]').forEach((reel) => {
+    const track = reel.querySelector<HTMLElement>('.reel-track')!;
+    reel.querySelectorAll<HTMLButtonElement>('.reel-nav').forEach((b) =>
+      b.addEventListener('click', () =>
+        track.scrollBy({ left: Number(b.dataset.dir) * track.clientWidth * 0.5, behavior: 'smooth' }),
+      ),
+    );
+  });
+</script>
