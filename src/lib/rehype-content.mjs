@@ -69,7 +69,12 @@ export default function rehypeContent() {
       const link = kind.buttons ? soleChild(node, 'a') : null;
       if (link) {
         link.properties = { ...link.properties, className: ['btn'] };
-        out.push({ type: 'element', tagName: 'p', properties: { className: ['btn-row'] }, children: [link] });
+        // Consecutive link-only paragraphs share one row of buttons
+        const prev = out.filter((n) => !isBlank(n)).at(-1);
+        if (prev?.properties?.className?.includes('btn-row')) prev.children.push(link);
+        else out.push({ type: 'element', tagName: 'p', properties: { className: ['btn-row'] }, children: [link] });
+      } else if (isBlank(node)) {
+        out.push(node);
       } else {
         out.push(node);
       }

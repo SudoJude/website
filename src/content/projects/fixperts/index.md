@@ -56,5 +56,7 @@ Julie and Jess both really liked the finished mat, and it worked as intended. Je
 It's also easy to extend, new wheels can cover activities, tasks and other things Jess might want to ask for, as Julie suggested.
 
 [Read the process book](https://drive.google.com/file/d/1phSZIQTLbDzIH-YjLXPXp4MRXc0z4MfF/view?usp=sharing)
+
 [Fixperts Website](https://fixperts.org)
+
 [Susanna's Website](https://www.susannastokes.com)
