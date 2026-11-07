@@ -1,21 +1,47 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import ProjectCard from '../../components/ProjectCard.astro';
+import Picture from '../../components/Picture.astro';
+import { url } from '../../data/site';
 import { getProjects, slugOf } from '../../lib/content';
 
 const projects = await getProjects();
 ---
 
-<Layout title="Portfolio | Jude Myers">
-  <div class="wrap">
-    <h1 class="page-title">Projects &amp; Portfolio</h1>
+<Layout title="Portfolio | Jude Myers" dark>
+  <section class="hero dots-dark">
+    <div class="inner"><h1>Projects &amp; Portfolio</h1></div>
+  </section>
+
+  <section class="list dots">
     <div class="grid">
-      {projects.map((p) => <ProjectCard slug={slugOf(p.id)} title={p.data.title} image={p.data.cover} alt={p.data.coverAlt} />)}
+      {
+        projects.map((p) => (
+          <a class="item" href={url(`portfolio/${slugOf(p.id)}`)}>
+            {p.data.cover ? <Picture class="cover" src={p.data.cover} alt={p.data.coverAlt} width={1000} /> : <div class="cover ph" />}
+            <h3>{p.data.title}</h3>
+          </a>
+        ))
+      }
     </div>
-  </div>
+  </section>
 </Layout>
 
 <style>
-  .page-title { font-size: clamp(2.4rem, 6vw, 4.5rem); }
-  .grid { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+  .hero { padding: 9rem 0 5.3rem; }
+  .inner { padding: 0 4%; }
+  .hero h1 { font-size: clamp(2.4rem, 5vw, 4.5rem); margin: 0; }
+
+  .list { padding: 3rem 4%; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.8rem 2%; }
+  .item { display: block; text-decoration: none; color: inherit; }
+  /* Covers are 16:9 (1920x1080) */
+  .item :global(.cover) { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+  .ph { background: rgba(26, 23, 20, 0.1); }
+  .item h3 { font-size: clamp(1.4rem, 2.1vw, 1.9rem); margin: 1.25rem 0 0; line-height: 1.2; }
+
+  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } .list { padding: 1.5rem 6% 3rem; } }
+
+  /* The original page runs straight into the footer */
+  :global(.site-footer) { margin-top: 0; }
 </style>

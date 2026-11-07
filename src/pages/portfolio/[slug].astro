@@ -51,6 +51,7 @@ const { heading, title, tagline, details } = project.data;
   @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
 
   .body { padding: 2rem 0 4rem; }
+  :global(.site-footer) { margin-top: 0; } /* the original runs straight into the footer */
   .content, .back { padding: 0 4%; }
   .back { margin-top: 3rem; }
 

@@ -2,7 +2,7 @@
 title: "Design Visualisation: Sony DSC-H300"
 order: 10
 cover: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/23e82445-b7ad-45ef-8666-28fe9fd56523/FinalPosterPNG.png"
-coverAlt: "Presentation poster for the Sony DSC-H300 camera"
+coverAlt: "Poster explaining the controls of the Sony DSC-H300 camera"
 tagline: "Developing vector illustrations and visual storytelling for digital camera features."
 details:
   - "Role: Graphic Designer"

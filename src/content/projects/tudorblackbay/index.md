@@ -1,8 +1,8 @@
 ---
 title: "Tudor Black Bay Photography Project"
 order: 9
-cover: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/a304569d-b8c7-44d8-8867-e74f1c0afba9/Copy+of+Tudor+Poster.png"
-coverAlt: "Black and white poster of a Tudor Black Bay watch"
+cover: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/4e62eeb6-a836-423e-838f-49983286276b/1000008561.jpg"
+coverAlt: "Black and white photo of a Tudor Black Bay watch on a wrist"
 tagline: "Product photography and visual storytelling for a classic dive watch."
 details:
   - "Role: Photographer, Visual Designer"

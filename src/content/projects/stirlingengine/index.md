@@ -1,8 +1,8 @@
 ---
 title: "Stirling Engine"
 order: 4
-cover: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/beafbfb9-7133-43aa-b2fd-6157712b8cdb/02.png"
-coverAlt: "Stirling engine SolidWorks drawing sheet"
+cover: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/f237abec-1e99-47ee-928a-eb296fd1befd/Thumbnail.png"
+coverAlt: "SolidWorks render of the Stirling engine assembly"
 heading: "Stirling Engine in SolidWorks"
 tagline: "Building SolidWorks proficiency by modelling a full Stirling engine assembly from provided drawings"
 details:
