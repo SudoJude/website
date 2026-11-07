@@ -19,14 +19,16 @@ const photos = (await getPhotos()).filter((p) => p.data.featured);
     </div>
   </section>
 
-  <section class="wrap block">
-    <h2 class="big">Featured Projects</h2>
-    <Carousel loop={false} label="Featured projects">
-      {projects.map((p) => (
-        <ProjectCard slug={slugOf(p.id)} title={p.data.shortTitle ?? p.data.title} image={p.data.cover} alt={p.data.coverAlt} />
-      ))}
-    </Carousel>
-    <p class="more"><a class="btn" href={url('portfolio')}>View All Projects</a></p>
+  <section class="featured dots">
+    <div class="wrap block">
+      <h2 class="big">Featured Projects</h2>
+      <Carousel class="project-carousel" loop={false} label="Featured projects">
+        {projects.map((p) => (
+          <ProjectCard slug={slugOf(p.id)} title={p.data.shortTitle ?? p.data.title} image={p.data.cover} alt={p.data.coverAlt} />
+        ))}
+      </Carousel>
+      <p class="more left"><a class="btn" href={url('portfolio')}>View All Projects</a></p>
+    </div>
   </section>
 
   <section class="blogs dots">
@@ -38,11 +40,10 @@ const photos = (await getPhotos()).filter((p) => p.data.featured);
             {p.data.cover && <Picture src={p.data.cover} alt={p.data.coverAlt} width={500} />}
             <time datetime={p.data.date.toISOString()}>{formatDate(p.data.date)}</time>
             <h3>{p.data.title}</h3>
-            <span>Read more →</span>
           </a>
         ))}
       </div>
-      <p class="more"><a class="btn" href={url('blog')}>View All Blogs</a></p>
+      <p class="more left"><a class="btn" href={url('blog')}>View All Blogs</a></p>
     </div>
   </section>
 
@@ -58,14 +59,31 @@ const photos = (await getPhotos()).filter((p) => p.data.featured);
 <style>
   .hero { min-height: 540px; display: grid; align-items: center; padding: 7rem 0 4rem; text-align: center; }
   .hero p { max-width: 62ch; margin: 1.5rem auto 0; font-size: 1.25rem; }
-  .block { padding: 4rem 0; }
+  .project-carousel { --carousel-gap: 2rem; --carousel-nav-top: calc(2rem + (min(420px, 78vw) - 2rem) * 0.28125); } /* arrows centred on the 16:9 covers */
+  .project-carousel :global(.carousel-track) { padding-block: 1rem 2rem; } /* room for the card shadow and hover lift */
+  .block { padding-block: 4rem; }
   .big { font-size: clamp(2.2rem, 5vw, 3.2rem); }
+  .more.left { text-align: left; }
   .more { margin: 2rem 0 0; text-align: center; }
   .blogs .block { padding: 4rem clamp(1rem, 3vw, 2.5rem); }
   .post-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-  .post { text-decoration: none; display: flex; flex-direction: column; gap: 0.5rem; }
-  .post :global(img) { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+  .post {
+    display: flex; flex-direction: column; gap: 0.6rem; padding: 1rem;
+    background: var(--ink); color: var(--cream); text-decoration: none;
+    /* Same soft shadow and hover lift as /blog and /portfolio */
+    box-shadow: 0 2px 6px rgba(26, 23, 20, 0.12), 0 6px 16px rgba(26, 23, 20, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .post:hover, .post:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(26, 23, 20, 0.16), 0 14px 28px rgba(26, 23, 20, 0.12);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .post { transition: none; }
+    .post:hover, .post:focus-visible { transform: none; }
+  }
+  .post :global(img) { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; margin-bottom: 0.4rem; }
   .post time { opacity: 0.7; }
-  .post h3 { font-size: 1.6rem; margin: 0; }
+  .post h3 { font-size: 1.6rem; margin: 0; color: var(--cream); }
   .block :global(.photo) { height: 340px; width: auto; max-width: none; aspect-ratio: auto 3 / 2; }
 </style>

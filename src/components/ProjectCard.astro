@@ -5,20 +5,28 @@ interface Props { slug: string; title: string; image?: any; alt?: string }
 const { slug, title, image, alt = '' } = Astro.props;
 ---
 
-<article class="card">
-  {image ? <Picture src={image} {alt} /> : <div class="ph" />}
-  <h2>{title}</h2>
-  <a class="btn" href={url(`portfolio/${slug}`)}>View Project</a>
-</article>
+<a class="card" href={url(`portfolio/${slug}`)}>
+  {image ? <Picture class="cover" src={image} {alt} /> : <div class="cover ph" />}
+  <h3>{title}</h3>
+</a>
 
 <style>
   .card {
     display: flex; flex-direction: column; gap: 1rem;
-    width: min(340px, 78vw);
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.35);
+    width: min(420px, 78vw); padding: 1rem;
+    background: var(--ink); color: var(--cream); text-decoration: none;
+    /* Same soft shadow and hover lift as /blog and /portfolio */
+    box-shadow: 0 2px 6px rgba(26, 23, 20, 0.12), 0 6px 16px rgba(26, 23, 20, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .card :global(img), .ph { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: var(--ink); }
-  h2 { font-size: 1.9rem; margin: 0; }
-  .btn { align-self: flex-start; margin-top: auto; }
+  .card:hover, .card:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(26, 23, 20, 0.16), 0 14px 28px rgba(26, 23, 20, 0.12);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card { transition: none; }
+    .card:hover, .card:focus-visible { transform: none; }
+  }
+  .card :global(.cover) { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #000; }
+  h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); margin: 0; line-height: 1.2; color: var(--cream); }
 </style>
