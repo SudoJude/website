@@ -37,6 +37,21 @@ const posts = await getPosts();
   .list { display: grid; gap: 2.5rem; padding: 3rem 4% 0; }
   article { display: grid; grid-template-columns: minmax(200px, 1fr) 2fr; gap: 2rem; align-items: stretch; }
   article :global(img), .ph { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: var(--ink); display: block; }
+  /* Soft shadow; the thumbnail lifts slightly on hover (or when its title link is hovered/focused) */
+  .thumb {
+    box-shadow: 0 2px 6px rgba(26, 23, 20, 0.12), 0 6px 16px rgba(26, 23, 20, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .thumb:hover,
+  article:has(h2 a:hover) .thumb,
+  article:has(h2 a:focus-visible) .thumb {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(26, 23, 20, 0.16), 0 14px 28px rgba(26, 23, 20, 0.12);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .thumb { transition: none; }
+    .thumb:hover, article:has(h2 a:hover) .thumb, article:has(h2 a:focus-visible) .thumb { transform: none; }
+  }
   /* The thumbnail sets the row height; the text box is exactly that tall and never makes it taller. */
   .text { contain: size; overflow: hidden; }
   h2 { font-size: clamp(1.4rem, 2.6vw, 2rem); margin-bottom: 0.75rem; }
