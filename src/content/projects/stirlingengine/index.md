@@ -1,6 +1,6 @@
 ---
 title: "Stirling Engine"
-order: 4
+order: 5
 cover: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/f237abec-1e99-47ee-928a-eb296fd1befd/Thumbnail.png"
 coverAlt: "SolidWorks render of the Stirling engine assembly"
 heading: "Stirling Engine in SolidWorks"

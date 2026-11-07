@@ -47,22 +47,24 @@ const photos = (await getPhotos()).filter((p) => p.data.featured);
     </div>
   </section>
 
-  <section class="block">
+  <section class="block dots">
     <div class="wrap"><h2 class="big">Featured Photography</h2></div>
-    <Carousel loop={false} label="Featured photography">
-      {photos.map((p) => <Picture class="photo" src={p.data.image} alt={p.data.alt} />)}
+    <Carousel class="film" loop={false} label="Featured photography">
+      {photos.map((p) => <div class="frame"><Picture class="photo" src={p.data.image} alt={p.data.alt} /></div>)}
     </Carousel>
-    <p class="more wrap"><a class="btn" href={url('photography')}>View All Photography</a></p>
+    <div class="wrap"><p class="more left"><a class="btn" href={url('photography')}>View All Photography</a></p></div>
   </section>
 </Layout>
 
 <style>
   .hero { min-height: 540px; display: grid; align-items: center; padding: 7rem 0 4rem; text-align: center; }
   .hero p { max-width: 62ch; margin: 1.5rem auto 0; font-size: 1.25rem; }
-  .project-carousel { --carousel-gap: 2rem; --carousel-nav-top: calc(2rem + (min(420px, 78vw) - 2rem) * 0.28125); } /* arrows centred on the 16:9 covers */
-  .project-carousel :global(.carousel-track) { padding-block: 1rem 2rem; } /* room for the card shadow and hover lift */
+  :global(.project-carousel) { --carousel-gap: 2rem; --carousel-nav-top: calc(2rem + (min(420px, 78vw) - 2rem) * 0.28125); } /* arrows centred on the 16:9 covers */
+  :global(.project-carousel .carousel-track) { padding-block: 1rem 1.5rem; } /* room for the card shadow and hover lift */
   .block { padding-block: 4rem; }
+  :global(.site-footer) { margin-top: 0; } /* the last section runs straight into the footer */
   .big { font-size: clamp(2.2rem, 5vw, 3.2rem); }
+  .featured .more { margin-top: 0.5rem; } /* the track's bottom padding (room for the card shadow) makes up the rest of the usual 2rem */
   .more.left { text-align: left; }
   .more { margin: 2rem 0 0; text-align: center; }
   .blogs .block { padding: 4rem clamp(1rem, 3vw, 2.5rem); }
@@ -85,5 +87,24 @@ const photos = (await getPhotos()).filter((p) => p.data.featured);
   .post :global(img) { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; margin-bottom: 0.4rem; }
   .post time { opacity: 0.7; }
   .post h3 { font-size: 1.6rem; margin: 0; color: var(--cream); }
+  /* Film strip: dark brown band with sprocket holes along both edges. The holes are drawn per frame
+     (not as one scrolling background) so scrolling stays smooth. */
+  :global(.film) {
+    --carousel-gap: 0;
+    --carousel-nav-top: 50%;
+    margin-top: 2rem;
+    background: var(--ink);
+  }
+  :global(.film .carousel-track) { padding-inline: 0.5rem; scroll-padding-inline: 0.5rem; }
+  .frame {
+    --hole: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16'%3E%3Crect x='9' width='22' height='16' rx='3' fill='%23f5f0eb'/%3E%3C/svg%3E");
+    padding: 3.2rem 0.5rem;
+    background-color: var(--ink);
+    background-image: var(--hole), var(--hole);
+    background-repeat: round no-repeat, round no-repeat;
+    background-size: 40px 16px, 40px 16px;
+    background-position: 0 0.8rem, 0 calc(100% - 0.8rem);
+  }
+  .frame :global(img) { display: block; }
   .block :global(.photo) { height: 340px; width: auto; max-width: none; aspect-ratio: auto 3 / 2; }
 </style>
