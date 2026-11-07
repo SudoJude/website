@@ -12,7 +12,7 @@ Dunne and Raby said that, and it takes a second to register. Week 4 of Contempor
 
 We started with something called the Polak Game. The room becomes a compass. You physically position yourself based on two things: whether you think the world is generally getting better or worse, and whether you feel you personally have any power to influence what happens next.
 
-![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/3bcb6f5a-9581-4c9f-867d-193773a36484/Screenshot+From+2026-05-01+12-11-00.png?format=original)
+![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/3bcb6f5a-9581-4c9f-867d-193773a36484/Screenshot+From+2026-05-01+12-11-00.png?format=1500w)
 
 I went to the lower right, things are getting worse, but I can still act. That wasn't a difficult decision for me. Climate, politics, inequality; the overall trajectory isn't great and I don't think pretending otherwise helps anyone. But I also think what individual people do still matters, including what designers do. So lower right felt right. What I didn't expect was where some of my classmates ended up. Not going to name names, but a few positions genuinely surprised me, people I assumed would read the world similarly ended up somewhere completely different. It's a small thing but worth noting. If people training for the same career can stand in completely different corners of that room, that has real implications for the work we'll eventually put out.
 
@@ -20,7 +20,7 @@ I went to the lower right, things are getting worse, but I can still act. That w
 
 The core idea is this: design doesn't have to be reactive. It doesn't have to wait for a problem to exist before engaging with it. Design Futures is about taking possible futures seriously, imagining them in enough detail that you can actually do something with them. A framework called the Future Cone (Hancock and Bezold, 1994) maps this out. Picture a cone expanding forward from the present. The widest edge is everything that *might* happen. It narrows through what *could* happen, what's *likely* to happen, and at the centre, what's actually *preferable*. The point isn't to predict the future. It's to figure out which part of the cone you're working towards.
 
-![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/d119d0cf-0678-4457-b886-87e6700284b9/speculative-design-cone-of-possibilities_FINAL.png?format=original)
+![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/d119d0cf-0678-4457-b886-87e6700284b9/speculative-design-cone-of-possibilities_FINAL.png?format=1500w)
 
 *Future Cone (Hancock and Bezold, 1994)*
 
@@ -44,7 +44,7 @@ The part of the lecture I was most drawn to was the sci-fi angle. *Blade Runner*
 
 **Syd Mead** is someone whose work I'm a huge fan of. He designed the future for a living, literally, as a visual futurist on *Blade Runner*, *Tron*, and others, and the technology in those films preceded real products by decades. Whether that's coincidence or influence is probably impossible to unpick, but the PADD devices from *Star Trek* and the iPad are too similar to dismiss entirely.
 
-![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/d373a4ff-62d1-4519-9c10-d3cec1dc9c04/4mpy50xjjjq81.png?format=original)
+![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/d373a4ff-62d1-4519-9c10-d3cec1dc9c04/4mpy50xjjjq81.png?format=1500w)
 
 *Corner Shop Concept Art For Blade Runner - Syd Mead*
 

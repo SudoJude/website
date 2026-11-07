@@ -32,5 +32,14 @@ export function excerptOf(post: CollectionEntry<'blog'>, max = 240) {
   return text.length > max ? `${text.slice(0, max).replace(/\s+\S*$/, '')}…` : text;
 }
 
-export const formatDate = (d: Date) =>
+// "11 Mar" (year added when it isn't the current year), as on the old Squarespace posts
+export const formatPostDate = (d: Date) =>
+  d.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    timeZone: 'UTC',
+    ...(d.getUTCFullYear() !== new Date().getUTCFullYear() && { year: 'numeric' as const }),
+  });
+
+export const formatDate =(d: Date) =>
   d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });

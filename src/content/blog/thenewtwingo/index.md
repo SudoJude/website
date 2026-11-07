@@ -10,7 +10,7 @@ In the world of product design, "retro-futurism" is often a trap. Designers freq
 
 The original 1992 Twingo was famous for its "frog-like" appearance. It had a face that felt alive. In the 2026 version, Renault has used modern LED technology to replicate those expressive, rounded eyes. From a design perspective, this is emotional ergonomics. By giving the car a friendly, approachable aesthetic, Renault is positioning the Twingo as a companion for the city, rather than a utilitarian “appliance” like a lot of modern cars today. It’s a design that proves form doesn’t always have to follow function, and that sometimes form should follow feeling.
 
-![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/774f9d0a-233c-40aa-84c9-c8a782146c84/Renault-Twingo-E-Tech-electric.jpg?format=original)
+![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/774f9d0a-233c-40aa-84c9-c8a782146c84/Renault-Twingo-E-Tech-electric.jpg?format=1500w)
 
 **The "YouClip" System: Designing for the User**
 
@@ -18,7 +18,7 @@ One of the most exciting features for me personally is the "YouClip" modular acc
 
 This allows the user to 3D-print or buy modular attachments (bags, lights, or tech mounts) to customise their space. I see this as the future of "Open Source" industrial design. It’s a bridge between mass production and individual personalization.
 
-![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/66eaa6c2-d17d-46ee-9027-7a961c75778e/Renault-Twingo-E-Tech-electric-Absolute-Green.jpg?format=original)
+![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/66eaa6c2-d17d-46ee-9027-7a961c75778e/Renault-Twingo-E-Tech-electric-Absolute-Green.jpg?format=1500w)
 
 **Technical Precision & Sustainability**
 
@@ -26,7 +26,7 @@ We can’t talk about impact without talking about the price. Renault is targeti
 
 Achieving this required extreme technical discipline. By using a simplified version of their AmpR Small platform (a platform that has already been successful in the new Renault 5) and smaller, more efficient batteries, they’ve reduced material waste and energy consumption. It’s design for the masses that balances fun, sustainability, and cost.
 
-![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/272fd1a1-e1b7-4804-9c22-c172e96b827a/Renault-Twingo-E-Tech-electric-Absolute-Green.jpg?format=original)
+![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/272fd1a1-e1b7-4804-9c22-c172e96b827a/Renault-Twingo-E-Tech-electric-Absolute-Green.jpg?format=1500w)
 
 **Final Thoughts**
 

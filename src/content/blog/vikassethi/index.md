@@ -6,7 +6,7 @@ cover: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/8
 
 What struck me most about Vikas' talk wasn't a specific project or piece of work, it was the shape of his career. Starting out in New Delhi, moving through design education and professional work in the United States, and eventually landing in the UK, his path is anything but linear. He's crossed industries and cultures, and his willingness to talk openly about that journey (rather than present a polished highlight reel) made it one of the more memorable talks we've had.
 
-![Verne Robotaxi](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/27a2c2cf-68c3-4b52-abf8-7575151e6930/ca4eb5247164267.69dd40ac9a68c.webp?format=original)
+![Verne Robotaxi](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/27a2c2cf-68c3-4b52-abf8-7575151e6930/ca4eb5247164267.69dd40ac9a68c.webp?format=1500w)
 
 *Verne Robotaxi which Vikas worked on.*
 

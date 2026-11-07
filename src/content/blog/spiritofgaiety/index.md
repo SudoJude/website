@@ -18,11 +18,11 @@ Back home I brought the image into editing. I pushed the contrast, worked on the
 
 When UL Photography Society opened submissions for their exhibition, I went back and forth for a while about what to submit. I landed on this one because even though I can't fully articulate my photographic style yet, this image felt like it pointed at it. I was nervous between submitting and seeing it on the wall. More than I expected to be, honestly.
 
-![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/e92358dc-2808-44c2-895b-8e058fef4558/DSC04598.JPG?format=original)
+![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/e92358dc-2808-44c2-895b-8e058fef4558/DSC04598.JPG?format=1500w)
 
-![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/1777145987489-V91A06E88SBKZR0I5VPK/PXL_20260408_181120912.jpg?format=original)
+![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/1777145987489-V91A06E88SBKZR0I5VPK/PXL_20260408_181120912.jpg?format=1500w)
 
-![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/1777146669401-OA1GLARB3BJP923QJPSN/Gemini_Generated_Image_ckgkprckgkprckgk.png?format=original)
+![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/1777146669401-OA1GLARB3BJP923QJPSN/Gemini_Generated_Image_ckgkprckgkprckgk.png?format=1500w)
 
 The opening was busy. There were people I knew there, and people I didn't. At some point I found myself watching strangers pause in front of my photo. I watched someone I didn't recognise look at it for a few seconds longer than a passing glance. I don't know what they thought. I didn't ask. There's something about a stranger pausing in front of your work that no amount of likes on a screen can replicate.
 

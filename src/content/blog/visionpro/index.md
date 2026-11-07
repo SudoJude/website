@@ -10,7 +10,7 @@ I think that's only part of the story.
 
 What Apple did with the Vision Pro was take 15 years of VR development, almost all of it built around gaming, and ask a completely different question. Not how do we make immersive experiences more immersive, but how do we make computing spatial. The result was visionOS, and visionOS is genuinely unlike anything else in the space. Eye tracking as your cursor. Pinch gestures instead of controllers. Floating windows sitting in the space around you. No game controller, no abstraction layer, nothing between you and the interface. The whole thing is designed around a person sitting at a desk trying to get work done. You can have your email open next to a browser next to a document, all in the air, all tracked to the physical space you're in. That's not an iteration on what Meta was doing. It's a different product category.
 
-![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/bc2a9a4e-f020-4042-9b9c-5062803a609d/pro2.png?format=original)
+![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/bc2a9a4e-f020-4042-9b9c-5062803a609d/pro2.png?format=1500w)
 
 The problem was never the idea.
 
@@ -24,4 +24,4 @@ Apple seem to know this. The cheaper Vision Air that was supposed to bring the p
 
 That's the thing about the Vision Pro. The interaction model it introduced, eyes, hands, voice, no controllers, is probably closer to how we'll use computers in ten years than anything shipping today. Apple just got there before the rest of the world was ready to follow.
 
-![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/a4928cc6-8087-4ce6-a121-5968dea4141a/pro1.jpg?format=original)
+![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/a4928cc6-8087-4ce6-a121-5968dea4141a/pro1.jpg?format=1500w)

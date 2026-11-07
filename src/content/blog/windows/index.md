@@ -44,6 +44,6 @@ Every interface reflects a set of values. Sometimes those values are aligned wit
 
 I wasn't. And that discomfort, more than anything, made me a more critical designer. I pay closer attention now to incentive structures in UX, to what a product is actually optimised for versus what it claims to be for. That gap is usually where the most interesting design questions live.
 
-![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/0c75895b-c01e-4b52-987d-d65a8cc2efde/Screenshot+From+2026-05-22+17-34-49.png?format=original)
+![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/0c75895b-c01e-4b52-987d-d65a8cc2efde/Screenshot+From+2026-05-22+17-34-49.png?format=1500w)
 
 *My Fedora Setup*

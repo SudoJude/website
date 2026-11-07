@@ -18,4 +18,4 @@ What I hadn't anticipated was the clay. They model in clay at Logitech, the same
 
 Going in I think I expected something more corporate, more managed. There's a version of a company visit that feels like a presentation of work rather than the work itself. This didn't feel like that. And the thing that's hard to get across in a lecture or a brief is that the gap between college and a place like that is mostly just time. The methods are the same.
 
-![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/a63a3df7-7f54-47ee-984f-84080be295f6/3305618_5_org_Logitech_20Mahon.jpg?format=original)
+![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/a63a3df7-7f54-47ee-984f-84080be295f6/3305618_5_org_Logitech_20Mahon.jpg?format=1500w)

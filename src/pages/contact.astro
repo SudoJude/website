@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { socials } from '../data/site';
+import { linkProps } from '../lib/links';
 ---
 
 <Layout title="Contact | Jude Myers">
@@ -8,7 +9,7 @@ import { socials } from '../data/site';
     <h1 class="page-title">Contact Me</h1>
     <p>Get in touch through any of these:</p>
     <ul>
-      {socials.map((s) => <li><a href={s.href} target="_blank" rel="noopener">{s.label}</a></li>)}
+      {socials.map((s) => <li><a href={s.href} {...linkProps(s.href)}>{s.label}</a></li>)}
     </ul>
   </div>
 </Layout>

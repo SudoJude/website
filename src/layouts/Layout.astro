@@ -4,6 +4,7 @@ import '@fontsource/ibm-plex-sans/700.css';
 import '@fontsource/ibm-plex-mono/400.css';
 import '@fontsource/ibm-plex-mono/700.css';
 import { site, nav, socials, url } from '../data/site';
+import { linkProps } from '../lib/links';
 
 interface Props {
   title?: string;
@@ -39,7 +40,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <a class="brand" href={url()}>{site.brand}</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
       <nav id="main-nav" aria-label="Main">
-        {nav.map((n) => <a href={n.href ?? url(n.path)}>{n.label}</a>)}
+        {nav.map((n) => { const href = n.href ?? url(n.path); return <a href={href} {...linkProps(href)}>{n.label}</a>; })}
         <a class="nav-cta" href={url('contact')}>Get In Touch</a>
       </nav>
       <a class="btn header-cta" href={url('contact')}>Get In Touch</a>
@@ -53,7 +54,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           <p class="footer-title">Jude Myers Design.</p>
           <p>Have a project in mind? <a href={url('contact')}>Get in touch here</a>.</p>
           <ul class="socials">
-            {socials.map((s) => <li><a href={s.href} target="_blank" rel="noopener">{s.label}</a></li>)}
+            {socials.map((s) => <li><a href={s.href} {...linkProps(s.href)}>{s.label}</a></li>)}
           </ul>
         </div>
         <nav aria-label="Footer">

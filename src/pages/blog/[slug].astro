@@ -1,15 +1,20 @@
 ---
 import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import Picture from '../../components/Picture.astro';
+import '../../components/carousel.css';
 import { url } from '../../data/site';
-import { getPosts, slugOf, excerptOf } from '../../lib/content';
+import { getPosts, slugOf, excerptOf, formatPostDate } from '../../lib/content';
 
 export async function getStaticPaths() {
-  const posts = await getPosts();
-  return posts.map((post) => ({ params: { slug: slugOf(post.id) }, props: { post } }));
+  const posts = await getPosts(); // newest first
+  const link = (p?: (typeof posts)[number]) => p && { slug: slugOf(p.id), title: p.data.title };
+  // As on the old site: "Previous" is the newer post, "Next" the older one.
+  return posts.map((post, i) => ({
+    params: { slug: slugOf(post.id) },
+    props: { post, newer: link(posts[i - 1]), older: link(posts[i + 1]) },
+  }));
 }
-const { post } = Astro.props;
+const { post, newer, older } = Astro.props;
 const { Content } = await render(post);
 ---
 
@@ -19,17 +24,62 @@ const { Content } = await render(post);
   type="article"
   image={typeof post.data.cover === 'string' ? post.data.cover : post.data.cover?.src}
 >
-  <div class="wrap">
-    <h1 class="page-title">{post.data.title}</h1>
-    <p class="meta">Jude · {post.data.date.toLocaleDateString('en-GB')}</p>
-    {post.data.cover && <Picture src={post.data.cover} alt={post.data.coverAlt} width={1500} />}
-    <div class="prose"><Content /></div>
-    <p><a class="btn" href={url('blog')}>← All Posts</a></p>
-  </div>
+  <article class="post dots">
+    <div class="column">
+      <p class="meta">
+        <time datetime={post.data.date.toISOString().slice(0, 10)}>{formatPostDate(post.data.date)}</time>
+        <span aria-hidden="true">•</span> Written by Jude
+      </p>
+      <h1>{post.data.title}</h1>
+      <div class="content"><Content /></div>
+    </div>
+  </article>
+
+  <nav class="pager dots" aria-label="More posts">
+    <div class="pager-inner">
+      {newer ? <a class="prev" href={url(`blog/${newer.slug}`)}><span class="arrow" aria-hidden="true">←</span><span class="sr">Previous: </span><h2>{newer.title}</h2></a> : <span />}
+      {older ? <a class="next" href={url(`blog/${older.slug}`)}><h2><span class="sr">Next: </span>{older.title}</h2><span class="arrow" aria-hidden="true">→</span></a> : <span />}
+    </div>
+  </nav>
 </Layout>
 
 <style>
-  .page-title { font-size: clamp(2.2rem, 5vw, 4rem); }
-  .meta { opacity: 0.7; }
-  .wrap :global(img) { width: 100%; max-width: 900px; margin: 1rem 0; }
+  .post { padding: 10rem 4% 3rem; }
+  .column { max-width: 994px; margin: 0 auto; }
+  .meta { margin: 0 0 2.5rem; font-size: clamp(0.9rem, 1.4vw, 1.25rem); line-height: 1.5; }
+  h1 { font-size: clamp(2.4rem, 5vw, 4.5rem); line-height: 1.2; letter-spacing: -0.02em; margin: 0 0 3rem; }
+
+  /* Markdown body (elements are generated, so :global) */
+  .content :global(p) { font-size: clamp(1rem, 1.4vw, 1.25rem); line-height: 1.5; margin: 0 0 1.25rem; }
+  .content :global(h2), .content :global(h3), .content :global(h4) {
+    font-size: clamp(1.4rem, 2.1vw, 1.9rem);
+    line-height: 1.17;
+    letter-spacing: -0.01em;
+    margin: 2.5rem 0;
+  }
+  .content :global(h2:first-child), .content :global(h3:first-child), .content :global(h4:first-child) { margin-top: 0; }
+  .content :global(ul), .content :global(ol) { font-size: clamp(1rem, 1.4vw, 1.25rem); line-height: 1.5; margin: 0 0 1.25rem; padding-left: 1.5rem; }
+  .content :global(blockquote) { margin: 1.5rem 0; padding-left: 1rem; border-left: 3px solid var(--ink); }
+  .content :global(a) { color: var(--blue); }
+  .content :global(p > img) { display: block; width: 100%; height: auto; margin: 1.1rem 0; }
+  .content :global(iframe) { display: block; width: 100%; aspect-ratio: 16 / 9; height: auto; border: 0; margin: 1.1rem 0; }
+  .content :global(.content-gallery) { margin: 1.1rem 0; }
+
+  .pager { padding: 2.6rem 4%; }
+  .pager-inner { display: flex; justify-content: space-between; gap: 2rem; }
+  .pager-inner > * { flex: 1 1 0; min-width: 0; }
+  .pager a { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
+  .pager .next { justify-content: flex-end; text-align: right; }
+  .pager h2 { font-size: clamp(1.4rem, 2.8vw, 2.5rem); line-height: 1; margin: 0; }
+  .pager .arrow { font: 700 2rem var(--mono); flex: none; }
+  .pager a:hover h2 { text-decoration: underline; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  @media (max-width: 700px) { .pager-inner { flex-direction: column; } .pager .next { justify-content: flex-start; text-align: left; flex-direction: row-reverse; } }
+
+  /* The original runs straight into the footer */
+  :global(.site-footer) { margin-top: 0; }
 </style>
+
+<script>
+  import '../../components/carousel.ts';
+</script>

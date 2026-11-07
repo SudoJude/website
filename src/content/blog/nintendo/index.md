@@ -8,13 +8,13 @@ I genuinely love Nintendo's games, and that's what makes writing this so annoyin
 
 Let’s start with the pro-consumer half, because it's something they do deserve credit for and I don't want to skip past it just because I'm about to spend the rest of this post being critical. Nintendo's first-party games are consistently excellent, priced fairly for what you get, and mostly free of the microtransaction rot that's crept into nearly everything else. You can still buy most of their big releases on a physical cartridge, put it on your shelf, loan it to a friend, and sell it years later if you want. In an industry that's been quietly moving everyone towards licensing access instead of owning anything, Nintendo still sells you something you can hold, and I respect them for not following the same direction as Sony and Microsoft.
 
-![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/9994a81e-c7cf-4c58-9612-f8b7e24eb1ce/acswitch.webp?format=original)
+![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/9994a81e-c7cf-4c58-9612-f8b7e24eb1ce/acswitch.webp?format=1500w)
 
 However, last week they filed seven DMCA notices against GitHub, and because of how GitHub handles forks, those seven notices took down 401 repositories in a single day. Once a parent repo passes 100 forks, removing it wipes out the whole network stemming from it, which is how Suyu (the project that picked up where Yuzu left off after Nintendo sued it into shutting down), lost 311 repos in one move. Nintendo’s legal argument isn't really about piracy directly, it's more about the cryptographic keys Switch games need to boot and run. Nintendo says the emulators run on unauthorised copies of those keys and that counts as circumventing a protection measure, which is a DMCA violation on its own regardless of whether or not piracy ever actually happened through the tool. And they have every right to do that, DMCA anti-circumvention law is about as clearly written as copyright law gets, they own the keys, and if I were running a platform that's still actively selling hardware and games, I'd probably do some version of the same thing. This isn't the obvious villain story people want it to be.
 
 But having the legal right to do something doesn't make it the right thing to do, especially when these games and emulators they’re removing literally aren’t available anywhere else.
 
-![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/c9e5f13f-0e17-45dd-b574-51164457eeda/ryujinxdeck.jpg?format=original)
+![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/c9e5f13f-0e17-45dd-b574-51164457eeda/ryujinxdeck.jpg?format=1500w)
 
 *Ryujinx running on a Steam Deck*
 

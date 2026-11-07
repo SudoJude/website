@@ -1,6 +1,6 @@
-// Rehype plugin for project case studies only (src/content/projects).
-// - A run of 2+ image-only paragraphs becomes a horizontal carousel ("reel").
-// - A paragraph containing only a link becomes a blue button.
+// Rehype plugin for project case studies (src/content/projects) and blog posts (src/content/blog).
+// - A run of 2+ image-only paragraphs becomes a looping carousel (both collections).
+// - A paragraph containing only a link becomes a blue button (projects only).
 const isBlank = (n) => n.type === 'text' && !n.value.trim();
 const significant = (p) => p.children.filter((c) => !isBlank(c));
 
@@ -18,9 +18,18 @@ const button = (dir, label, text) => ({
   children: [{ type: 'text', value: text }],
 });
 
-export default function rehypeProject() {
+// Per-collection carousel look (CSS variables read by carousel.css)
+const KINDS = {
+  projects: { buttons: true, style: '--carousel-gap:0;--carousel-height:clamp(220px,31vw,450px);--carousel-nav-top:50%' },
+  blog: { buttons: false, style: '--carousel-gap:0;--carousel-height:clamp(260px,34.5vw,497px);--carousel-nav-top:50%' },
+};
+
+export default function rehypeContent() {
   return (tree, file) => {
-    if (!String(file?.path ?? '').includes('/content/projects/')) return;
+    const path = String(file?.path ?? '');
+    const name = path.includes('/content/projects/') ? 'projects' : path.includes('/content/blog/') ? 'blog' : null;
+    if (!name) return;
+    const kind = KINDS[name];
     const out = [];
     let run = [];
     const flush = () => {
@@ -29,14 +38,14 @@ export default function rehypeProject() {
           type: 'element',
           tagName: 'div',
           properties: {
-            className: ['carousel', 'project-gallery'],
+            className: ['carousel', 'content-gallery'],
             'data-carousel': '',
             'data-loop': '',
             'data-align': 'center',
             role: 'group',
             ariaRoleDescription: 'carousel',
             ariaLabel: 'Image gallery',
-            style: '--carousel-gap:0;--carousel-height:clamp(220px,31vw,450px);--carousel-nav-top:50%',
+            style: kind.style,
           },
           children: [
             { type: 'element', tagName: 'div', properties: { className: ['carousel-track'] }, children: run },
@@ -57,7 +66,7 @@ export default function rehypeProject() {
       }
       if (isBlank(node) && run.length) continue; // whitespace between images keeps the run going
       flush();
-      const link = soleChild(node, 'a');
+      const link = kind.buttons ? soleChild(node, 'a') : null;
       if (link) {
         link.properties = { ...link.properties, className: ['btn'] };
         out.push({ type: 'element', tagName: 'p', properties: { className: ['btn-row'] }, children: [link] });

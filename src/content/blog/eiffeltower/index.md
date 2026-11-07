@@ -12,7 +12,7 @@ The Tower was built for the 1889 World's Fair and was supposed to come down afte
 
 It's still there because of the arches that serve no purpose.
 
-![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/14fa13da-bc07-48a0-99a4-9d9806009e87/IMG_20260603_130651173%7E2.jpg?format=original)
+![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/14fa13da-bc07-48a0-99a4-9d9806009e87/IMG_20260603_130651173%7E2.jpg?format=1500w)
 
 Beautiful design outlasts the reason it was made. Function has a shelf life, something better comes along, something cheaper, something faster. But beauty doesn't work that way. People invent reasons to keep beautiful things around.
 
@@ -22,4 +22,4 @@ That's the thinking I want in my own work. Make something beautiful because it s
 
 I left Paris still thinking about Sauvestre's arches. The Tower was supposed to come down after twenty years. The radio equipment is long gone. The World's Fair is long gone. The arches are still there.
 
-![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/16896734-1f17-496f-8384-1e77bb67f2ac/IMG_20260603_130501572%7E2.jpg?format=original)
+![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/16896734-1f17-496f-8384-1e77bb67f2ac/IMG_20260603_130501572%7E2.jpg?format=1500w)

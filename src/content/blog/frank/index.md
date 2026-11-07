@@ -10,7 +10,7 @@ In this one-off episode, myself, Conor Rowe, and Conor Galligan dig into the car
 
 If you want to go deeper after listening, Frank has an active YouTube channel and features in the documentary *Chasing Perfect*, available on Amazon Prime.
 
-![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/f543f63a-3536-484c-aa87-5b630e731f56/frank.jpeg?format=original)
+![](https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/f543f63a-3536-484c-aa87-5b630e731f56/frank.jpeg?format=1500w)
 
 *Frank Stephenson*
 
