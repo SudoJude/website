@@ -67,6 +67,9 @@ const { heading, title, tagline, details } = project.data;
   .content :global(.btn) { color: var(--cream); text-decoration: none; }
   .content :global(p > img) { max-width: min(100%, 1000px); height: auto; margin: 1.5rem auto; }
 
+  .content :global(.video) { position: relative; aspect-ratio: 16 / 9; max-width: 1000px; margin: 1.5rem auto; }
+  .content :global(.video iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
   /* Galleries are carousels (markup from the rehype plugin); here they just go full width */
   .content :global(.content-gallery) { margin: 2rem -4vw; }
 </style>
