@@ -18,8 +18,10 @@ export async function getPhotos() {
   return all.sort((a, b) => (b.data.date?.valueOf() ?? 0) - (a.data.date?.valueOf() ?? 0));
 }
 
-export function excerptOf(post: CollectionEntry<'blog'>, max = 240) {
-  if (post.data.excerpt) return post.data.excerpt;
+// Paragraphs of a post's excerpt: the `excerpt` frontmatter (blank line = new paragraph), or the
+// first body paragraph. The old Squarespace posts had hand-written excerpts, kept in frontmatter.
+export function excerptParagraphs(post: CollectionEntry<'blog'>): string[] {
+  if (post.data.excerpt) return post.data.excerpt.split(/\n\s*\n/).map((t) => t.trim()).filter(Boolean);
   const first =
     (post.body ?? '')
       .split(/\n\s*\n/)
@@ -29,6 +31,38 @@ export function excerptOf(post: CollectionEntry<'blog'>, max = 240) {
     .replace(/[*_`>\\]/g, '')
     .replace(/\s+/g, ' ')
     .trim();
+  return text ? [text] : [];
+}
+
+const plain = (md: string) =>
+  md
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/[*_`\\]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+const squash = (s: string) => plain(s).toLowerCase().replace(/[^a-z0-9]+/g, '');
+
+// Text for the blog listing: the excerpt, then the post's own paragraphs after the one the excerpt
+// came from, so the listing can fill the height of the thumbnail (cut to fit in the browser).
+export function listingText(post: CollectionEntry<'blog'>, maxChars = 2500): string {
+  const paras = (post.body ?? '')
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter((p) => p && !/^(#|!\[|<|>)/.test(p) && !/^\*\*[^*]+\*\*$/.test(p)); // skip headings, images, embeds, quotes
+  const excerpt = excerptParagraphs(post);
+  let next = 1; // by default continue after the first paragraph
+  const tail = squash(excerpt.at(-1) ?? '').slice(-40); // where the excerpt ends
+  if (tail.length >= 20) {
+    const at = paras.findIndex((p) => squash(p).includes(tail));
+    if (at >= 0) next = at + 1;
+  }
+  const text = [...excerpt, ...paras.slice(next).map(plain)].join(' ');
+  return text.length > maxChars ? text.slice(0, maxChars) : text;
+}
+
+// Single-line, length-limited excerpt (meta descriptions)
+export function excerptOf(post: CollectionEntry<'blog'>, max = 240) {
+  const text = excerptParagraphs(post).join(' ').replace(/\s+/g, ' ');
   return text.length > max ? `${text.slice(0, max).replace(/\s+\S*$/, '')}…` : text;
 }
 

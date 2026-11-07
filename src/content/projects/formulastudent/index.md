@@ -7,4 +7,4 @@ cover: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/1
 coverAlt: "Cardboard architectural model on a three-legged stand"
 ---
 
-[Formula Student Wesbite](fsul.ie)
+[Formula Student Wesbite](https://fsul.ie)

@@ -2,6 +2,7 @@
 title: "Design Futures: What Are We Designing Towards?"
 date: 2026-02-27
 cover: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/d373a4ff-62d1-4519-9c10-d3cec1dc9c04/4mpy50xjjjq81.png"
+excerpt: "\"Don't just imagine the car of the future, imagine the traffic jam.\"\n\nDunne and Raby said that, and it takes a second to register. Week 4 of Contemporary Design Culture was full of moments like it, things that sound obvious, until you actually think about them. The lecture was built around Design Futures, what it is, why designers should care, and how to actually do it. I went in expecting something abstract, and came out with a question I'm still trying to answer."
 ---
 
 *"Don't just imagine the car of the future, imagine the traffic jam."*

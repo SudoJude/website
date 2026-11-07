@@ -1,14 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Picture from '../components/Picture.astro';
+import PageHero from '../components/PageHero.astro';
+import { art } from '../data/art';
+import { linkProps } from '../lib/links';
 ---
 
-<Layout title="Art | Jude Myers">
-  <div class="wrap">
-    <h1 class="page-title">Art</h1>
-    <p>Artwork coming soon.</p>
-  </div>
+<Layout title="Art | Jude Myers" dark>
+  <PageHero title="Art" />
+
+  <section class="gallery dots">
+    <div class="grid">
+      {
+        art.map((a) => (
+          <a href={a.full} {...linkProps(a.full)} title="View fullsize">
+            <Picture class="art" src={a.src} alt={a.alt} width={1000} />
+          </a>
+        ))
+      }
+    </div>
+  </section>
 </Layout>
 
 <style>
-  .page-title { font-size: clamp(2.4rem, 6vw, 4.5rem); }
+  .gallery { padding: 3.6rem 4%; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1%; }
+  .grid a { display: block; }
+  .grid :global(.art) { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+
+  /* The original runs straight into the footer */
+  :global(.site-footer) { margin-top: 0; }
 </style>

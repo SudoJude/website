@@ -2,6 +2,7 @@
 title: "London and Nottingham: A Week of Museums, Making, and Thinking About Design"
 date: 2026-03-11
 cover: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/be9f6cd8-b009-4ef8-a516-2712a0dded45/DSC04642.JPG"
+excerpt: "Every design student gets told to go to London. Go to the museums, go to the galleries, look at things. It's good advice, but it doesn't quite prepare you for what it's actually like to stand in front of objects and buildings that put everything you've been learning in college into a much sharper context."
 ---
 
 Every design student gets told to go to London. Go to the museums, go to the galleries, look at things. It's good advice, but it doesn't quite prepare you for what it's actually like to stand in front of objects and buildings that put everything you've been learning in college into a much sharper context.

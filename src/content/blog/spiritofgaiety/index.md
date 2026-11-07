@@ -2,6 +2,7 @@
 title: "Spirit of Gaiety: The Shot That Got Me Into My First Exhibition"
 date: 2026-04-10
 cover: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/e92358dc-2808-44c2-895b-8e058fef4558/DSC04598.JPG"
+excerpt: "I've been taking photos seriously for a couple of years now. Not seriously in the sense that I've always had a plan, more that I started caring, really caring, about what I was pointing a camera at and why. I shoot everything. Street scenes, landscapes, events, quiet moments. I haven't landed on a defined style yet, and for a long time that felt like something I should be worried about. This is partly the story of why I've stopped worrying about it."
 ---
 
 I've been taking photos seriously for a couple of years now. Not seriously in the sense that I've always had a plan, more that I started caring, really caring, about what I was pointing a camera at and why. I shoot everything. Street scenes, landscapes, events, quiet moments. I haven't landed on a defined style yet, and for a long time that felt like something I should be worried about.

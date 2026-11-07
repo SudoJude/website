@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Picture from '../../components/Picture.astro';
+import PageHero from '../../components/PageHero.astro';
 import { url } from '../../data/site';
 import { getProjects, slugOf } from '../../lib/content';
 
@@ -8,9 +9,7 @@ const projects = await getProjects();
 ---
 
 <Layout title="Portfolio | Jude Myers" dark>
-  <section class="hero dots-dark">
-    <div class="inner"><h1>Projects &amp; Portfolio</h1></div>
-  </section>
+  <PageHero title="Projects & Portfolio" />
 
   <section class="list dots">
     <div class="grid">
@@ -27,10 +26,6 @@ const projects = await getProjects();
 </Layout>
 
 <style>
-  .hero { padding: 9rem 0 5.3rem; }
-  .inner { padding: 0 4%; }
-  .hero h1 { font-size: clamp(2.4rem, 5vw, 4.5rem); margin: 0; }
-
   .list { padding: 3rem 4%; }
   .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.8rem 2%; }
   .item { display: block; text-decoration: none; color: inherit; }

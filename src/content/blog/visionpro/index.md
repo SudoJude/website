@@ -2,6 +2,7 @@
 title: "Too Early, Not Too Wrong: The Apple Vision Pro"
 date: 2026-05-29
 cover: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/a4928cc6-8087-4ce6-a121-5968dea4141a/pro1.jpg"
+excerpt: "I've never worn a Vision Pro. At €3,500 I don't think many people have. I have used a Quest 2 though, and a few other headsets, so I'm not coming at this completely cold. And I've spent enough time thinking about how interfaces work to have an opinion on what Apple built and why it didn't connect.The easy observation is that the Vision Pro failed. It sold around 600,000 units across its entire lifespan. Apple quietly wound the team down earlier this year. There's no successor coming. By most measures it's a product that didn't succeed."
 ---
 
 I've never worn a Vision Pro. At €3,500 I don't think many people have. I have used a Quest 2 though, and a few other headsets, so I'm not coming at this completely cold. And I've spent enough time thinking about how interfaces work to have an opinion on what Apple built and why it didn't connect.The easy observation is that the Vision Pro failed. It sold around 600,000 units across its entire lifespan. Apple quietly wound the team down earlier this year. There's no successor coming. By most measures it's a product that didn't succeed.

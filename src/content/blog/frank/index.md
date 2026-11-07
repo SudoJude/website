@@ -2,6 +2,7 @@
 title: "Frank Stephenson: An Automotive Design Podcast"
 date: 2026-04-27
 cover: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/f543f63a-3536-484c-aa87-5b630e731f56/frank.jpeg"
+excerpt: "The MINI, the Ferrari F430, the Maserati MC12, the Fiat 500, the McLaren P1, all one person, across four decades at the top of the industry. In this one-off episode, myself, Conor Rowe, and Conor Galligan dig into the career and design philosophy of one of the most influential automotive designers of our time. How do you redesign an icon without ruining it? What does biomimicry have to do with a hypercar? We get into all of it."
 ---
 
 Most people have never heard the name Frank Stephenson. Most people have also walked past his work every day without knowing it. The MINI, the Ferrari F430, the Maserati MC12, the Fiat 500, the McLaren P1, all one person, across four decades at the top of the industry.

@@ -2,6 +2,7 @@
 title: "Logitech Cork: The Process Doesn't Change"
 date: 2026-03-13
 cover: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/a63a3df7-7f54-47ee-984f-84080be295f6/3305618_5_org_Logitech_20Mahon.jpg"
+excerpt: "The Logitech visit came not long after London, and that probably shaped how I took it in. A few days earlier we'd been in Thomas Heatherwick's studio, looking at models and material experiments and drawings pinned to the wall. Cork was a different kind of visit, and in some ways a more interesting one."
 ---
 
 The Logitech visit came not long after London, and that probably shaped how I took it in. A few days earlier we'd been in Thomas Heatherwick's studio, looking at models and material experiments and drawings on the walls. Cork was a different kind of visit, and in some ways a more interesting one.

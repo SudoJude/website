@@ -1,40 +1,92 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Picture from '../../components/Picture.astro';
+import PageHero from '../../components/PageHero.astro';
 import { url } from '../../data/site';
-import { getPosts, slugOf, excerptOf } from '../../lib/content';
+import { getPosts, slugOf, excerptOf, listingText } from '../../lib/content';
 
 const posts = await getPosts();
 ---
 
-<Layout title="Blog | Jude Myers">
-  <div class="wrap">
-    <h1 class="page-title">Blogs &amp; Case Studies</h1>
-    <div class="list">
-      {posts.map((p) => (
+<Layout title="Blog | Jude Myers" dark>
+  <PageHero title="Blogs & Case Studies" />
+
+  <div class="list">
+    {posts.map((p) => {
+      const href = url(`blog/${slugOf(p.id)}`);
+      return (
         <article>
-          <a href={url(`blog/${slugOf(p.id)}`)}>
-            {p.data.cover ? <Picture src={p.data.cover} alt={p.data.coverAlt} width={500} /> : <div class="ph" />}
+          <a class="thumb" href={href} tabindex="-1" aria-hidden="true">
+            {p.data.cover ? <Picture src={p.data.cover} alt="" width={500} /> : <div class="ph" />}
           </a>
-          <div>
-            <p class="meta">Jude · {p.data.date.toLocaleDateString('en-GB')}</p>
-            <h2><a href={url(`blog/${slugOf(p.id)}`)}>{p.data.title}</a></h2>
-            <p>{excerptOf(p)}</p>
-            <a href={url(`blog/${slugOf(p.id)}`)}>Read More</a>
+          <div class="text">
+            <p class="meta">Jude | {p.data.date.toLocaleDateString('en-GB', { timeZone: 'UTC' })}</p>
+            <h2><a href={href}>{p.data.title}</a></h2>
+            {/* Without JS: the short excerpt. With JS (below) the text is filled up to the thumbnail's height. */}
+            <p class="excerpt" data-full={listingText(p)} data-short={excerptOf(p)}>
+              <span class="ex">{excerptOf(p)}</span>{' '}<a class="more" href={href}>Read More<span class="sr"> about {p.data.title}</span></a>
+            </p>
           </div>
         </article>
-      ))}
-    </div>
+      );
+    })}
   </div>
 </Layout>
 
 <style>
-  .page-title { font-size: clamp(2.4rem, 6vw, 4.5rem); }
-  .list { display: grid; gap: 2.5rem; }
-  article { display: grid; grid-template-columns: minmax(200px, 1fr) 2fr; gap: 2rem; }
-  article :global(img), .ph { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: var(--ink); }
-  h2 { font-size: 2rem; }
+  .list { display: grid; gap: 2.5rem; padding: 3rem 4% 0; }
+  article { display: grid; grid-template-columns: minmax(200px, 1fr) 2fr; gap: 2rem; align-items: stretch; }
+  article :global(img), .ph { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: var(--ink); display: block; }
+  /* The thumbnail sets the row height; the text box is exactly that tall and never makes it taller. */
+  .text { contain: size; overflow: hidden; }
+  h2 { font-size: clamp(1.4rem, 2.6vw, 2rem); margin-bottom: 0.75rem; }
   h2 a { text-decoration: none; }
   .meta { opacity: 0.7; margin: 0 0 0.5rem; }
-  @media (max-width: 700px) { article { grid-template-columns: 1fr; } }
+  .excerpt { margin: 0; }
+  .more { white-space: nowrap; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  @media (max-width: 900px) {
+    article { grid-template-columns: 1fr; align-items: start; }
+    .text { contain: none; overflow: visible; }
+  }
 </style>
+
+<script>
+  // Fill each entry's text up to the height of its thumbnail: show as many words of the excerpt as fit,
+  // then "Read More" at the end of it.
+  const stacked = window.matchMedia('(max-width: 900px)');
+
+  function fit(text: HTMLElement) {
+    const p = text.querySelector<HTMLElement>('.excerpt')!;
+    const ex = p.querySelector<HTMLElement>('.ex')!;
+    if (stacked.matches) {
+      ex.textContent = p.dataset.short ?? '';
+      return;
+    }
+    const full = p.dataset.full ?? '';
+    const words = full.split(/\s+/);
+    const fits = (n: number) => {
+      ex.textContent = n >= words.length ? full : `${words.slice(0, n).join(' ')}…`;
+      return text.scrollHeight <= text.clientHeight + 1;
+    };
+    let lo = 0;
+    let hi = words.length;
+    if (fits(hi)) return;
+    while (lo < hi) {
+      const mid = Math.ceil((lo + hi) / 2);
+      if (fits(mid)) lo = mid;
+      else hi = mid - 1;
+    }
+    fits(lo);
+  }
+
+  const run = () => document.querySelectorAll<HTMLElement>('.text').forEach(fit);
+  run();
+  document.fonts?.ready.then(run); // text metrics change once the web fonts load
+  let width = window.innerWidth;
+  window.addEventListener('resize', () => {
+    if (window.innerWidth === width) return;
+    width = window.innerWidth;
+    run();
+  });
+</script>

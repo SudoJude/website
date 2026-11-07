@@ -2,6 +2,7 @@
 title: "Peter Sheehan: Locally Sourced, Locally Made"
 date: 2026-04-17
 cover: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/d314ecaf-6374-48e8-aa45-dbddf3904a89/87acbff0-b0ca-446b-a59f-afb01863a3b3.jpeg"
+excerpt: "Peter Sheehan came up through traditional industrial design, the conventional route, working with the kind of processes and supply chains that most product design graduates end up in. Factories, manufacturing tolerances, the whole system. At some point in the last few years he made a deliberate turn away from that, toward something smaller and more rooted, and what's interesting is that it doesn't read as a rejection of his background so much as an extension of it. He still thinks like a designer, he's just asking different questions now."
 ---
 
 Peter Sheehan came up through traditional industrial design, the conventional route, working with the kind of processes and supply chains that most product design graduates end up in. Factories, manufacturing tolerances, the whole system. At some point in the last few years he made a deliberate turn away from that, toward something smaller and more rooted, and what's interesting is that it doesn't read as a rejection of his background so much as an extension of it. He still thinks like a designer, he's just asking different questions now.

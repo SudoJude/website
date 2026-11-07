@@ -2,6 +2,7 @@
 title: "The New Renault Twingo: Retro Done Right"
 date: 2026-02-05
 cover: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/774f9d0a-233c-40aa-84c9-c8a782146c84/Renault-Twingo-E-Tech-electric.jpg"
+excerpt: "In the world of product design, \"retro-futurism\" is often a trap. Designers frequently lean too hard into nostalgia, creating something that feels like a costume, or they go too far into the future, losing the \"soul\" of the original. However, Renault’s recent reveal of the 2026 Twingo is a masterclass in hitting the sweet spot."
 ---
 
 In the world of product design, "retro-futurism" is often a trap. Designers frequently lean too hard into nostalgia, creating something that feels like a costume, or they go too far into the future, losing the "soul" of the original. However, Renault’s recent reveal of the 2026 Twingo is a masterclass in hitting the sweet spot.

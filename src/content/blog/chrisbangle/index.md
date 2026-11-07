@@ -2,6 +2,7 @@
 title: "The Man Who Broke BMW: The polarising genius of Chris Bangle"
 date: 2026-02-11
 cover: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/56bcf666-92b8-4a54-a4bf-81f69b6fdd91/chris_bangle_02_2.jpg"
+excerpt: "If you want to start a fight at a car meet, just mention the name Chris Bangle. As the first American to run the design department at BMW, Bangle didn't just tweak the headlights or modernise the grilles, he essentially set fire to the brand’s rulebook. During his era from 1992 to 2009, he dragged the entire automotive world into the 21st century."
 ---
 
 If you want to start a fight at a car meet, just mention the name Chris Bangle. As the first American to run the design department at BMW, Bangle didn't just tweak the headlights or modernise the grilles, he essentially set fire to the brand’s rulebook. During his era from 1992 to 2009, he dragged the entire automotive world into the 21st century.

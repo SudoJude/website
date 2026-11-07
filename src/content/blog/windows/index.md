@@ -2,6 +2,7 @@
 title: "The Distraction Machine: How Windows Stopped Being a Tool and Why I Switched to Linux"
 date: 2026-05-22
 cover: "https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c94f/1779467978709-E8MR1LANBIR0YPBT9IQT/windows11.jpg"
+excerpt: "In 2024 I bought a MacBook. I loved it. But college demands more than a MacBook Air is comfortable giving, so at some point I picked up a cheap ThinkPad, wiped it, and put Linux on it. I'd used Linux on servers before so I wasn't walking in blind, and the immediate goal was simple, extract as much performance as I could from cheap hardware. What I didn't expect was to fall in love with the design philosophy behind it."
 ---
 
 In 2024 I bought a MacBook. I loved it. But college demands more than a MacBook Air is comfortable giving, so at some point I picked up a cheap ThinkPad, wiped it, and put Linux on it. I'd used Linux on servers before so I wasn't walking in blind, and the goal was simple, extract as much performance as I could from cheap hardware. What I didn't expect was to fall in love with the design philosophy behind it.
