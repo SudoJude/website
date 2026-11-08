@@ -5,6 +5,9 @@ const cdn = 'https://images.squarespace-cdn.com/content/v1/6977e92fc2a43f6e90f0c
 
 export const url = (path = '') => `${import.meta.env.BASE_URL.replace(/\/$/, '')}/${path}`;
 
+export const contactUrl =
+  'https://docs.google.com/forms/d/e/1FAIpQLSdKGRZciV8upCLdQKfCnscdp2DQFjMjD8uyRM2BRuOC_EhV3g/viewform?usp=publish-editor';
+
 export const site = {
   name: 'Jude Myers',
   brand: 'Jude Myers Design',
