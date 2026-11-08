@@ -1,4 +1,4 @@
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 
 // Folder-style entries ("my-post/index.md") get the folder name as slug.
 export const slugOf = (id: string) => id.replace(/\/index$/, '');
@@ -16,6 +16,13 @@ export async function getPosts() {
 export async function getPhotos() {
   const all = await getCollection('photography');
   return all.sort((a, b) => (b.data.date?.valueOf() ?? 0) - (a.data.date?.valueOf() ?? 0) || a.data.row - b.data.row);
+}
+
+// One image from src/content/images/misc.csv, by id.
+export async function getMisc(id: string) {
+  const entry = await getEntry('misc', id);
+  if (!entry) throw new Error(`No image "${id}" in misc.csv`);
+  return { src: entry.data.image, alt: entry.data.alt };
 }
 
 export async function getArt() {

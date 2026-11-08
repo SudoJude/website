@@ -1,8 +1,8 @@
 import { defineCollection, z } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 import { photoCategories } from './data/categories';
-import { parseCsv } from './lib/csv';
-import { mediaUrl } from './lib/media';
+import { parseCsv } from './lib/csv.mjs';
+import { mediaUrl } from './lib/media.mjs';
 
 // A picture is either a local file (preferred, optimised at build time) or a remote URL.
 const picture = (image: () => z.ZodType) => z.union([image(), z.string().url()]);
@@ -55,6 +55,30 @@ const photography = defineCollection({
   }),
 });
 
+// Images used in blog posts. Markdown refers to them as ![](img:<id>) (see rehype-sheet-images.mjs);
+// `post` is the blog slug, kept for sorting/filtering in the spreadsheet.
+const blogImages = defineCollection({
+  loader: file('./src/content/images/blog.csv', { parser: parseCsv }),
+  schema: z.object({
+    row: z.coerce.number(),
+    post: z.string().default(''),
+    image: sheetImage,
+    alt: z.string().min(1),
+  }),
+});
+
+// Everything else (about-page portrait, home-page images, social previews, ...).
+// `used_on` is a note to yourself. Use ![](img:<id>) in Markdown, or getMisc('<id>') in a page.
+const misc = defineCollection({
+  loader: file('./src/content/images/misc.csv', { parser: parseCsv }),
+  schema: z.object({
+    row: z.coerce.number(),
+    image: sheetImage,
+    alt: z.string().default(''),
+    used_on: z.string().default(''),
+  }),
+});
+
 const art = defineCollection({
   loader: file('./src/content/images/art.csv', { parser: parseCsv }),
   schema: z.object({
@@ -65,4 +89,4 @@ const art = defineCollection({
   }),
 });
 
-export const collections = { projects, blog, photography, art };
+export const collections = { projects, blog, photography, art, blogImages, misc };
