@@ -8,7 +8,7 @@ export function parseCsv(text) {
   let row = [];
   let cell = '';
   let quoted = false;
-  const src = text.replace(/^﻿/, '');
+  const src = text.replace(/^\uFEFF/, '');
   for (let i = 0; i < src.length; i++) {
     const c = src[i];
     if (quoted) {
@@ -23,6 +23,7 @@ export function parseCsv(text) {
       rows.push(row); row = [];
     } else cell += c;
   }
+  if (quoted) throw new Error('CSV has an unclosed quote ("). Check the last cell with a quote in it.');
   if (cell || row.length) { row.push(cell); rows.push(row); }
 
   const [header, ...body] = rows.filter((r) => r.some((v) => v.trim()));
@@ -30,8 +31,9 @@ export function parseCsv(text) {
   const keys = header.map((k) => k.trim());
   return body.map((r, i) => {
     /** @type {Record<string, string>} */
-    const o = { row: String(i) };
+    const o = {};
     keys.forEach((k, j) => { o[k] = (r[j] ?? '').trim(); });
+    o.row = String(i); // line order in the sheet; set last so a column named "row" can't override it
     return o;
   });
 }

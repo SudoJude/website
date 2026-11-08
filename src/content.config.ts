@@ -40,7 +40,12 @@ const blog = defineCollection({
 // Image spreadsheets live in src/content/images/*.csv (open them in Excel, Numbers, etc.).
 // `image` is a full URL or a path inside the R2 bucket; `row` is the line order in the sheet.
 const sheetImage = z.string().min(1).transform(mediaUrl);
-const sheetBool = z.preprocess((v) => (typeof v === 'string' ? ['true', 'yes', '1'].includes(v.trim().toLowerCase()) : v), z.boolean());
+// Blank = false. Anything other than true/yes/1 or false/no/0 is an error, so typos don't silently hide a photo.
+const sheetBool = z.preprocess((v) => {
+  if (typeof v !== 'string') return v;
+  const t = v.trim().toLowerCase();
+  return ['true', 'yes', '1'].includes(t) ? true : ['', 'false', 'no', '0'].includes(t) ? false : v;
+}, z.boolean());
 const sheetDate = z.preprocess((v) => (v === '' ? undefined : v), z.coerce.date().optional());
 
 const photography = defineCollection({
@@ -55,20 +60,9 @@ const photography = defineCollection({
   }),
 });
 
-// Images used in blog posts. Markdown refers to them as ![](img:<id>) (see rehype-sheet-images.mjs);
-// `post` is the blog slug, kept for sorting/filtering in the spreadsheet.
-const blogImages = defineCollection({
-  loader: file('./src/content/images/blog.csv', { parser: parseCsv }),
-  schema: z.object({
-    row: z.coerce.number(),
-    post: z.string().default(''),
-    image: sheetImage,
-    alt: z.string().min(1),
-  }),
-});
-
 // Everything else (about-page portrait, home-page images, social previews, ...).
 // `used_on` is a note to yourself. Use ![](img:<id>) in Markdown, or getMisc('<id>') in a page.
+// blog.csv has no collection: it is only read by rehype-sheet-images.mjs (src/lib/sheets.mjs).
 const misc = defineCollection({
   loader: file('./src/content/images/misc.csv', { parser: parseCsv }),
   schema: z.object({
@@ -89,4 +83,4 @@ const art = defineCollection({
   }),
 });
 
-export const collections = { projects, blog, photography, art, blogImages, misc };
+export const collections = { projects, blog, photography, art, misc };

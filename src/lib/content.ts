@@ -1,3 +1,4 @@
+import { isSquarespace } from './media.mjs';
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 
 // Folder-style entries ("my-post/index.md") get the folder name as slug.
@@ -31,7 +32,7 @@ export async function getArt() {
     src: a.data.image,
     alt: a.data.alt,
     // Squarespace images are resized by query string; R2 files are served as uploaded.
-    full: a.data.full ?? (a.data.image.includes('squarespace-cdn') ? `${a.data.image}?format=2500w` : a.data.image),
+    full: a.data.full ?? (isSquarespace(a.data.image) ? `${a.data.image}?format=2500w` : a.data.image),
   }));
 }
 
