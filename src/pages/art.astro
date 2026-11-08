@@ -2,8 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import Picture from '../components/Picture.astro';
 import PageHero from '../components/PageHero.astro';
-import { art } from '../data/art';
+import { getArt } from '../lib/content';
 import { linkProps } from '../lib/links';
+
+const art = await getArt();
 ---
 
 <Layout title="Art | Jude Myers" dark>

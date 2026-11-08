@@ -1,6 +1,8 @@
 import { defineCollection, z } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 import { photoCategories } from './data/categories';
+import { parseCsv } from './lib/csv';
+import { mediaUrl } from './lib/media';
 
 // A picture is either a local file (preferred, optimised at build time) or a remote URL.
 const picture = (image: () => z.ZodType) => z.union([image(), z.string().url()]);
@@ -35,16 +37,32 @@ const blog = defineCollection({
     }),
 });
 
+// Image spreadsheets live in src/content/images/*.csv (open them in Excel, Numbers, etc.).
+// `image` is a full URL or a path inside the R2 bucket; `row` is the line order in the sheet.
+const sheetImage = z.string().min(1).transform(mediaUrl);
+const sheetBool = z.preprocess((v) => (typeof v === 'string' ? ['true', 'yes', '1'].includes(v.trim().toLowerCase()) : v), z.boolean());
+const sheetDate = z.preprocess((v) => (v === '' ? undefined : v), z.coerce.date().optional());
+
 const photography = defineCollection({
-  loader: file('./src/content/photography/photos.yaml'),
-  schema: ({ image }) =>
-    z.object({
-      image: picture(image),
-      alt: z.string(),
-      category: z.enum(photoCategories),
-      featured: z.boolean().default(false), // show on the home page
-      date: z.coerce.date().optional(), // newest first when set
-    }),
+  loader: file('./src/content/images/photography.csv', { parser: parseCsv }),
+  schema: z.object({
+    row: z.coerce.number(),
+    image: sheetImage,
+    alt: z.string().min(1),
+    category: z.enum(photoCategories),
+    featured: sheetBool.default(false), // show on the home page
+    date: sheetDate, // newest first when set
+  }),
 });
 
-export const collections = { projects, blog, photography };
+const art = defineCollection({
+  loader: file('./src/content/images/art.csv', { parser: parseCsv }),
+  schema: z.object({
+    row: z.coerce.number(),
+    image: sheetImage, // shown in the grid
+    full: sheetImage.optional(), // opened in a new tab; defaults to `image`
+    alt: z.string().min(1),
+  }),
+});
+
+export const collections = { projects, blog, photography, art };

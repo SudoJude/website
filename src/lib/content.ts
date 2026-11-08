@@ -15,7 +15,17 @@ export async function getPosts() {
 
 export async function getPhotos() {
   const all = await getCollection('photography');
-  return all.sort((a, b) => (b.data.date?.valueOf() ?? 0) - (a.data.date?.valueOf() ?? 0));
+  return all.sort((a, b) => (b.data.date?.valueOf() ?? 0) - (a.data.date?.valueOf() ?? 0) || a.data.row - b.data.row);
+}
+
+export async function getArt() {
+  const all = await getCollection('art');
+  return all.sort((a, b) => a.data.row - b.data.row).map((a) => ({
+    src: a.data.image,
+    alt: a.data.alt,
+    // Squarespace images are resized by query string; R2 files are served as uploaded.
+    full: a.data.full ?? (a.data.image.includes('squarespace-cdn') ? `${a.data.image}?format=2500w` : a.data.image),
+  }));
 }
 
 // Paragraphs of a post's excerpt: the `excerpt` frontmatter (blank line = new paragraph), or the
