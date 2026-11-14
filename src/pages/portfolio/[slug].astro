@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import '../../components/carousel.css';
+import '../../components/model.css';
 import { url } from '../../data/site';
 import { getProjects, slugOf } from '../../lib/content';
 
@@ -80,4 +81,5 @@ const { heading, title, tagline, details } = project.data;
 
 <script>
   import '../../components/carousel.ts';
+  import '../../components/model.ts';
 </script>

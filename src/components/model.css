@@ -1,0 +1,37 @@
+/* Click-to-load 3D viewer (markup from rehype-models.mjs, behaviour in model.ts). */
+.model { max-width: 1000px; margin: 2rem auto; }
+.model__stage { position: relative; }
+.model model-viewer {
+  display: block;
+  width: 100%;
+  height: clamp(320px, 60vw, 600px);
+  background: var(--cream);
+  --progress-bar-color: var(--blue);
+}
+.model__poster {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: 0;
+  background: var(--ink);
+  color: var(--cream);
+  cursor: pointer;
+}
+.model__poster[hidden] { display: none; }
+.model__poster:disabled { cursor: progress; }
+.model__poster img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55); margin: 0; max-width: none; }
+.model__load {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(1rem, 1.6vw, 1.4rem);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.model__poster:hover .model__load, .model__poster:focus-visible .model__load { text-decoration: underline; text-underline-offset: 0.3em; }
+.model__load small { font-size: 0.7em; letter-spacing: 0.05em; opacity: 0.75; }

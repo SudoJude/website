@@ -60,6 +60,8 @@ The finished assembly brings all 20 parts together into a fully mated SolidWorks
 
 This project was CAD-only, no physical build, and with the whole module built around SolidWorks specifically, it was the biggest single push my fluency in the software got. I'd been getting by across three different CAD packages depending on context. SolidWorks only from secondary school, Fusion 360 at work, FreeCAD for my own projects. Modelling a 20-part assembly to exact tolerances, with materials and a fully working mate structure, forced me to get properly comfortable with the software most automotive and manufacturing employers actually expect. Working from someone else's reference design and drawing set, rather than my own sketches, also made me more careful about reading dimensions and tolerances correctly, which is a habit I don't think you can build any other way.
 
+![](model:stirling-engine)
+
 [View All Project Files](https://drive.google.com/drive/folders/1ChklYXrtFpYZyQ7L1i3M_urF5njsmrKt?usp=sharing)
 
 ## Practice Models
